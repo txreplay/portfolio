@@ -1,16 +1,96 @@
 <!DOCTYPE html>
-<html {{ sonata_seo_html_attributes() }}>
-    <head {{ sonata_seo_head_attributes() }}>
-        <meta charset="UTF-8" />
-        {% block title %}{{ sonata_seo_title() }}{% endblock %}
-        {{ sonata_seo_metadatas() }}
-        {{ sonata_seo_link_canonical() }}
-        {{ sonata_seo_lang_alternates() }}
-        {% block stylesheets %}{% endblock %}
+<html lang="fr-FR">
+<head>
+    <meta charset="{% block metaCharset %}utf-8{% endblock %}">
+    <meta name="viewport" content="{% block metaViewport %}width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no{% endblock %}">
+
+    <title>{% block title %}{% endblock %} | Valentin Commenge - Développeur Web</title>
+    <meta name="description" content="{% block metaDescription %}Bonjour, moi c'est Valentin ! Je suis développeur web sur Paris. Si vous cherchez quelqu'un pour développer votre site web, n'hésitez pas à me contacter.{% endblock %}" />
+    <meta name="keywords" content="{% block metaKeywords %}valentin, commenge, txreplay, developpeur, web, symfony, symfony2, symfony3, sensio, my, little, paris, mylittleparis, france, paris, php, etudiant, hetic, ecv, alternant, alternance{% endblock %}">
+    <meta name="geo.placename" content="{% block metaGeoPlacename %}Paris, Île de France, France{% endblock %}">
+    <meta name="robots" content="{% block metaRobots %}index,follow{% endblock %}">
+
+    <meta name="author" content="Valentin Commenge" />
+    <meta name="copyright" content="Valentin Commenge" />
+
+    {% block favicon %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+    {% endblock %}
+
+    <!--[if lt IE 9]>
+    <script src="{{ asset('bower_components/html5shiv/dist/html5shiv.js') }}"></script>
+    <![endif]-->
+
+    {# TODO: Absolute URLS for images Twitter & Facebook #}
+    {% block twitterCard %}
+        <meta name="twitter:card" content="{% block metaTwitterCard %}summary{% endblock %}" />
+        <meta name="twitter:title" content="{% block metaTwitterTitle %}Valentin Commenge{% endblock %}" />
+        <meta name="twitter:description" content="{% block metaTwitterDescription %}Bonjour, moi c'est Valentin ! Je suis développeur web sur Paris. Si vous cherchez quelqu'un pour développer votre site web, n'hésitez pas à me contacter.{% endblock %}" />
+        <meta name="twitter:image" content="{% block metaTwitterImage %}{% image 'images/circle_picture.jpg' %}{{ asset_url }}{% endimage %}{% endblock %}" />
+        <meta name="twitter:site" content="{% block metaTwitterSite %}@txreplay{% endblock %}" />
+        <meta name="twitter:creator" content="{% block metaTwitterCreator %}@txreplay{% endblock %}" />
+    {% endblock %}
+
+    {% block metaOg %}
+        <meta property="og:title" content="{% block metaOgTitle %}Valentin Commenge{% endblock %}" />
+        <meta property="og:description" content="{% block metaOgDescription %}Bonjour, moi c'est Valentin ! Je suis développeur web sur Paris. Si vous cherchez quelqu'un pour développer votre site web, n'hésitez pas à me contacter.{% endblock %}" />
+        <meta property="og:url" content="{% block metaOgUrl %}{% if app.request.attributes.get('_route') is not empty %}{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}{% else %}{{ url('homepage') }}{% endif %}{% endblock %}" />
+        <meta property="og:type" content="{% block metaOgType %}website{% endblock %}" />
+        <meta property="og:image" content="{% block metaOgImage %}{% image 'images/facebook.jpg' %}{{ asset_url }}{% endimage %}{% endblock %}" />
+        <meta property="og:updated_time" content="{% block metaOgTime %}{{ 'today'|date('U') }}{% endblock %}" />
+        <meta property="og:site_name" content="{% block metaOgSiteName %}Valentin Commenge{% endblock %}" />
+        <meta property="og:locality" content="{% block metaOgLocality %}Paris{% endblock %}" />
+        <meta property="og:postal-code" content="{% block metaOgPostalCode %}75012{% endblock %}" />
+        <meta property="og:country-name" content="{% block metaOgCountryName %}France{% endblock %}" />
+        <meta property="og:email" content="{% block metaOgEmail %}txreplay@gmail.com{% endblock %}" />
+        <meta property="og:locale" content="{% block metaOgLocale %}fr_FR{% endblock %}">
+    {% endblock %}
+
+    {% block stylesheets %}
+        {# TODO: LESS #}
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}
+    {% block header %}
+        {% include 'front/header.html.twig' %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+        {% include 'front/footer.html.twig' %}
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+    {% if app.environment != 'dev' %}<script>(function(){window.ok_w_id="561cbf1477f4d57e5b1470ce";var ok_w = document.createElement('script'); ok_w.type = 'text/javascript'; ok_w.async = true;ok_w.src = 'https://cdn.optkit.com/assets/widget/widget.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ok_w, s);})();</script>{% endif %}
+{% endblock %}
+
+{% block analytics %}
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-47295321-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a[data-tracking]").on( "click", function() {
+                var titre = $(this).attr("data-tracking");
+                var page = document.title;
+                ga("send", "event", titre, "Click", page);
+            });
+        });
+    </script>
+{% endblock %}
+</body>
 </html>

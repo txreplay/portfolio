@@ -1,0 +1,28 @@
+{
+    "name": "txreplay-portfolio",
+    "version": "1",
+    "homepage": "https://github.com/TxReplay/portfolio",
+    "authors": [
+        "Valentin 'TxReplay' Commenge <txreplay@gmail.com>"
+    ],
+    "description": "TxReplay's Portfolio",
+    "moduleType": [
+        "amd",
+        "es6",
+        "globals",
+        "node",
+        "yui"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "html5shiv": "~3.7.3",
+        "jquery": "~2.1.4"
+    }
+}
