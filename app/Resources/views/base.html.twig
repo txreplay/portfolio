@@ -2,7 +2,7 @@
 <html {{ sonata_seo_html_attributes() }}>
     <head {{ sonata_seo_head_attributes() }}>
         <meta charset="UTF-8" />
-        <title>{% block title %}{{ sonata_seo_title() }}{% endblock %}</title>
+        {% block title %}{{ sonata_seo_title() }}{% endblock %}
         {{ sonata_seo_metadatas() }}
         {{ sonata_seo_link_canonical() }}
         {{ sonata_seo_lang_alternates() }}

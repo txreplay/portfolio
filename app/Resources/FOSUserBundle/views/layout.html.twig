@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr" {{ sonata_seo_html_attributes() }}>
+<link rel="icon" href="{{ asset('images/logoEN2.png') }}">
+<head {{ sonata_seo_head_attributes() }}>
+    {{ sonata_seo_title() }}
+    {{ sonata_seo_metadatas() }}
+    {{ sonata_seo_link_canonical() }}
+    {{ sonata_seo_lang_alternates() }}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {#<link rel="apple-touch-icon" href="apple-touch-icon.png">#}
+    <link rel="stylesheet" href="{{ asset('css/normalize.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/trunk.css') }}">
+</head>
+<body>
+<div class="container" style="margin-top: 50px;">
+    <img src="{{ asset('images/logoEN.png') }}" width="276px" alt="Emilie Nifou, Psychologue clinicienne"/>
+    <div class="clearfix"></div>
+
+    <div class="bloctxt col-md-5" style="margin-top: 50px;float:none;text-align: left;height:auto;padding:15px;">
+
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+        {% else %}
+            {#<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
+        {% endif %}
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <span class="flash-{{ type }}">
+                        {{ message }}
+                    </span>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+
+        {% if app.request.attributes.get('_route') == 'fos_user_security_login' %}
+            <a href="{{ path('fos_user_resetting_request') }}" style="text-align: center;display: block;text-decoration: underline;color: #3C3F41;">Mot de passe oublié</a>
+        {% else %}
+            <a href="{{ path('fos_user_security_login') }}" style="text-align: center;display: block;text-decoration: underline;color: #3C3F41;">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+        {% endif %}
+    </div>
+</div>
+{% block javascripts %}
+    <script src="{{ asset('js/vendor/jquery-1.11.2.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/trunk.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
