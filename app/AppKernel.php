@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
 
             // Sonata
-            new Sonata\SeoBundle\SonataSeoBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),

@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: sonata/sonata_seo.yml }
     - { resource: sonata/sonata_block.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
