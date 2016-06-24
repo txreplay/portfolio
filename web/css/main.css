@@ -1,0 +1,27 @@
+html { height: 100%; }
+body { min-height: 100%; }
+
+/* GENERIC CLASSES */
+.italic, em { font-style: italic; }
+.bold { font-weight: bold; }
+.uppercase { text-transform: uppercase; }
+a { text-decoration: none; }
+.active { border-bottom: 1px solid black; }
+
+body {
+    position: relative;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: black;
+    text-align: center;
+    background-color: white;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 400;
+}

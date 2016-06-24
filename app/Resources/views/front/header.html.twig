@@ -1,7 +1,14 @@
+{% set curr_route = app.request.attributes.get('_route') %}
 <header>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ path('homepage') }}" {% if curr_route == 'homepage' %}class="active"{% endif %}>À propos</a>
+                <a href="{{ path('projects') }}" {% if curr_route == 'projects' %}class="active"{% endif %}>Projets</a>
+            </li>
+        </ul>
+    </nav>
     <img src="{% image 'images/circle_picture.png' %}{{ asset_url }}{% endimage %}" alt="Logo">
-    <p>
-        {{ content.name|raw }} <br>
-        {{ content.job_title|raw }}, {{ content.city|raw }}
-    </p>
+    <h1>{{ content.name|raw }}</h1>
+    <h2>{{ content.job_title|raw }}, {{ content.city|raw }}</h2>
 </header>

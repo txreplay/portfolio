@@ -45,8 +45,18 @@
         <meta property="og:locale" content="{% block metaOgLocale %}fr_FR{% endblock %}">
     {% endblock %}
 
+
+    {% block fonts %}
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700" rel="stylesheet">
+    {% endblock %}
+
     {% block stylesheets %}
-        {# TODO: LESS #}
+        {% stylesheets
+        'css/reset.css'
+        'css/main.css'
+        filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
     {% endblock %}
 </head>
 

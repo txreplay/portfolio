@@ -16,7 +16,7 @@ class ContentAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('key', null, [
+            ->addIdentifier('key', null, [
                 'label' => 'Clé',
                 'help' => 'Tel qu\'il sera requis dans le code'
             ])
