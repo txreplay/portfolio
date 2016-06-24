@@ -57,9 +57,16 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="cover", type="string", length=255, nullable=true, unique=true)
+     * @ORM\Column(name="cover", type="string", length=255, nullable=true)
      */
     private $cover;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link_project", type="string", length=255, nullable=true)
+     */
+    private $linkProject;
 
     /**
      * @var string
@@ -209,6 +216,22 @@ class Project
     public function setCover($cover)
     {
         $this->cover = $cover;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLinkProject()
+    {
+        return $this->linkProject;
+    }
+
+    /**
+     * @param string $linkProject
+     */
+    public function setLinkProject($linkProject)
+    {
+        $this->linkProject = $linkProject;
     }
 
     ///////////////

@@ -41,6 +41,7 @@ class ProjectAdmin extends AbstractAdmin
                     ->add('published', 'choice',array('label' => "Is published ?", "choices" => $this->booleanChoices))
                     ->add('cover', null, ['label' => 'Project\'s Cover Image'])
                     ->add('type', null, ['label' => 'Project\'s Type'])
+                    ->add('linkProject', null, ['label' => 'Project\'s Link'])
                     ->add('creationDate', null, ['label' => 'Project\'s Date'])
                     ->add('description', 'textarea', [
                         'label' => 'Project\'s Description',
@@ -62,6 +63,7 @@ class ProjectAdmin extends AbstractAdmin
             ->add('title', null, ['label' => 'Project\'s Title' ])
             ->add('cover', null, ['label' => 'Project\'s Cover Image'])
             ->add('type', null, ['label' => 'Project\'s Type'])
+            ->add('linkProject', null, ['label' => 'Project\'s Link'])
             ->add('creationDate', null, ['label' => 'Project\'s Date'])
             ->add('description', null, ['label' => 'Description'])
         ;
