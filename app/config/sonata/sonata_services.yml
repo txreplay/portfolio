@@ -4,3 +4,8 @@ services:
         arguments: [~, AppBundle\Entity\Project, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Portfolio", label: "Projets" }
+    app.admin.content:
+        class: AppBundle\Admin\ContentAdmin
+        arguments: [~, AppBundle\Entity\Content, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Portfolio", label: "Contenu"}

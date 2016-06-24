@@ -13,6 +13,10 @@ class FrontController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('front/index.html.twig', []);
+        $content = $this->getDoctrine()->getRepository('AppBundle:Content')->getByKeys(['name', 'city', 'job_title']);
+
+        return $this->render('front/index.html.twig', [
+            'content' => $content
+        ]);
     }
 }
