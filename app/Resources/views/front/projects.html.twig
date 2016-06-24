@@ -4,11 +4,13 @@
 
 {% block content %}
     <div id="projects">
-        <h3>Projets</h3>
-        <ul>
-            {% for project in projects %}
-                <li>{{ project.title }}</li>
-            {% endfor %}
-        </ul>
+        <div class="wrapper">
+            <h3 class="bold">Projets</h3>
+            <ul>
+                {% for project in projects %}
+                    <li>{{ project.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endblock %}

@@ -3,5 +3,9 @@
 {% block title %}Page d'accueil{% endblock %}
 
 {% block content %}
-    {{ content.description|raw }}
+    <div id="homepage">
+        <div class="custom-description">
+            {{ content.description|raw }}
+        </div>
+    </div>
 {% endblock %}

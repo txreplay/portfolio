@@ -2,26 +2,67 @@ html { height: 100%; }
 body { min-height: 100%; }
 
 /* GENERIC CLASSES */
+a {
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
 .italic, em { font-style: italic; }
-.bold { font-weight: bold; }
 .uppercase { text-transform: uppercase; }
-a { text-decoration: none; }
-.active { border-bottom: 1px solid black; }
+.regular, strong { font-weight: 500; }
+.bold { font-weight: 700; }
+.active, a:hover { border-bottom: 1px solid black !important; }
+
+.wrapper {
+    max-width: 666px;
+    display: block;
+    margin: 0 auto;
+}
 
 body {
     position: relative;
     font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 15px;
     color: black;
     text-align: center;
     background-color: white;
 }
 
-h1 {
-    font-weight: 700;
+/* HEADER */
+nav {
+    float: right;
+    margin: 20px 5px 0 0;
 }
 
+nav ul li { display: inline-block; }
+nav ul li:not(:first-child) { margin-left: 25px; }
+nav ul li a {
+    padding-bottom: 2px;
+    border: none;
+}
+
+.logo {
+    display: block;
+    width: 150px;
+    margin: 40px auto;
+    clear: both;
+}
+
+h1 { font-size: 25px; }
 h2 {
-    font-weight: 400;
+    font-size: 18px;
+    margin: 5px 0 40px 0;
+}
+
+/* HOMEPAGE */
+#homepage .custom-description li {
+    margin: 8px 0;
+}
+
+/* PROJECTS */
+#projects h3 {
+    font-size: 22px;
+    margin-bottom: 30px;
 }
