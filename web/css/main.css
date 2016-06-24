@@ -20,6 +20,16 @@ a {
     margin: 0 auto;
 }
 
+h1 { font-size: 25px; }
+h2 {
+    font-size: 18px;
+    margin: 5px 0 40px 0;
+}
+h3 {
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
 body {
     position: relative;
     font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -47,13 +57,8 @@ nav ul li a {
     display: block;
     width: 150px;
     margin: 40px auto;
+    padding-top: 40px;
     clear: both;
-}
-
-h1 { font-size: 25px; }
-h2 {
-    font-size: 18px;
-    margin: 5px 0 40px 0;
 }
 
 /* HOMEPAGE */
@@ -62,7 +67,3 @@ h2 {
 }
 
 /* PROJECTS */
-#projects h3 {
-    font-size: 22px;
-    margin-bottom: 30px;
-}

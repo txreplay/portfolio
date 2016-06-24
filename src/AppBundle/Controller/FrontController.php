@@ -4,21 +4,23 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class FrontController extends Controller
 {
-    protected $keys;
 
-    public function __construct() {
-        $this->keys = ['name', 'city', 'job_title', 'description'];
-    }
+//    protected $keys;
+//
+//    public function __construct() {
+//        $this->keys = ['name', 'city', 'job_title', 'description'];
+//    }
 
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction()
     {
-        return $this->render('front/index.html.twig', [
+        return $this->renderCache('front/index.html.twig', [
             'content'  => $this->getContent(),
         ]);
     }
@@ -30,14 +32,41 @@ class FrontController extends Controller
     {
         $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findAll();
 
-        return $this->render('front/projects.html.twig', [
+        return $this->renderCache('front/projects.html.twig', [
             'content'  => $this->getContent(),
             'projects' => $projects
         ]);
     }
 
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction()
+    {
+        return $this->render('front/contact.html.twig', [
+            'content'  => $this->getContent(),
+        ]);
+    }
+
+    private function renderCache($template, $output)
+    {
+        $response = new Response();
+        $response->setPublic();
+        $response->setMaxAge(60);
+        $response->setSharedMaxAge(60);
+        $date = new \DateTime();
+        $date->modify('+ 60 seconds');
+        $response->setExpires($date);
+        return $this->render($template, $output, $response);
+    }
+
     private function getContent()
     {
-        return $this->getDoctrine()->getRepository('AppBundle:Content')->getByKeys($this->keys);
+        $contents_obj = $this->getDoctrine()->getRepository('AppBundle:Content')->findAll();
+        $content = [];
+        foreach($contents_obj as $contents){
+            $content[$contents->getKey()] = $contents->getValue();
+        }
+        return $content;
     }
 }

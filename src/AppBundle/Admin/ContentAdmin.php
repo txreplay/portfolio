@@ -18,13 +18,10 @@ class ContentAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('key', null, [
                 'label' => 'Clé',
-                'help' => 'Tel qu\'il sera requis dans le code'
-            ])
-            ->add('label', null, [
-                'label' => 'Libellé',
             ])
             ->add('value', null, [
                 'label' => 'Valeur',
+                'template' => 'admin/content/list_value.html.twig'
             ])
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -44,18 +41,12 @@ class ContentAdmin extends AbstractAdmin
         $formMapper
             ->add('key', null, [
                 'label' => 'Clé',
-                'help' => 'Tel qu\'il sera requis dans le code'
-            ])
-            ->add('label', null, [
-                'label' => 'Libellé',
-                'help' => 'Ce libellé sera uniquement utilisé pour identifier le contenu dans la liste'
             ])
             ->add('value', 'textarea', [
                 'label' => 'Valeur',
                 'attr' => [
                     'class' => 'ckeditor'
                 ],
-                'help' => 'Cette donnée sera celle affichée dans le site'
             ])
         ;
     }
@@ -68,10 +59,6 @@ class ContentAdmin extends AbstractAdmin
         $showMapper
             ->add('key', null, [
                 'label' => 'Clé',
-                'help' => 'Tel qu\'il sera requis dans le code'
-            ])
-            ->add('label', null, [
-                'label' => 'Libellé',
             ])
             ->add('value', null, [
                 'label' => 'Valeur',

@@ -1,17 +1,19 @@
+{% set curr_route = app.request.attributes.get('_route') %}
+
 <!DOCTYPE html>
 <html lang="fr-FR">
 <head>
     <meta charset="{% block metaCharset %}utf-8{% endblock %}">
     <meta name="viewport" content="{% block metaViewport %}width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no{% endblock %}">
 
-    <title>{% block title %}{% endblock %} | Valentin Commenge - Développeur Web</title>
-    <meta name="description" content="{% block metaDescription %}Bonjour, moi c'est Valentin ! Je suis développeur web sur Paris. Si vous cherchez quelqu'un pour développer votre site web, n'hésitez pas à me contacter.{% endblock %}" />
-    <meta name="keywords" content="{% block metaKeywords %}valentin, commenge, txreplay, developpeur, web, symfony, symfony2, symfony3, sensio, my, little, paris, mylittleparis, france, paris, php, etudiant, hetic, ecv, alternant, alternance{% endblock %}">
-    <meta name="geo.placename" content="{% block metaGeoPlacename %}Paris, Île de France, France{% endblock %}">
+    <title>{% block title %}{% endblock %} | {{ content.name }} - {{ content.job_title }}</title>
+    <meta name="description" content="{% block metaDescription %}{{ content.meta_description }}{% endblock %}" />
+    <meta name="keywords" content="{% block metaKeywords %}{{ content.keywords }}{% endblock %}">
+    <meta name="geo.placename" content="{% block metaGeoPlacename %}{{ content.city_complete }}{% endblock %}">
     <meta name="robots" content="{% block metaRobots %}index,follow{% endblock %}">
 
-    <meta name="author" content="Valentin Commenge" />
-    <meta name="copyright" content="Valentin Commenge" />
+    <meta name="author" content="{{ content.name }}" />
+    <meta name="copyright" content="{{ content.name }}" />
 
     {% block favicon %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -23,25 +25,25 @@
 
     {% block twitterCard %}
         <meta name="twitter:card" content="{% block metaTwitterCard %}summary{% endblock %}" />
-        <meta name="twitter:title" content="{% block metaTwitterTitle %}Valentin Commenge{% endblock %}" />
-        <meta name="twitter:description" content="{% block metaTwitterDescription %}Bonjour, moi c'est Valentin ! Je suis développeur web sur Paris. Si vous cherchez quelqu'un pour développer votre site web, n'hésitez pas à me contacter.{% endblock %}" />
+        <meta name="twitter:title" content="{% block metaTwitterTitle %}{{ content.name }}{% endblock %}" />
+        <meta name="twitter:description" content="{% block metaTwitterDescription %}{{ content.meta_description }}{% endblock %}" />
         <meta name="twitter:image" content="{% block metaTwitterImage %}{% image 'images/circle_picture.png' %}{{ app.request.getSchemeAndHttpHost() ~ asset_url }}{% endimage %}{% endblock %}" />
-        <meta name="twitter:site" content="{% block metaTwitterSite %}@txreplay{% endblock %}" />
-        <meta name="twitter:creator" content="{% block metaTwitterCreator %}@txreplay{% endblock %}" />
+        <meta name="twitter:site" content="{% block metaTwitterSite %}@{{ content.pseudo }}{% endblock %}" />
+        <meta name="twitter:creator" content="{% block metaTwitterCreator %}@{{ content.pseudo }}{% endblock %}" />
     {% endblock %}
 
     {% block metaOg %}
-        <meta property="og:title" content="{% block metaOgTitle %}Valentin Commenge{% endblock %}" />
-        <meta property="og:description" content="{% block metaOgDescription %}Bonjour, moi c'est Valentin ! Je suis développeur web sur Paris. Si vous cherchez quelqu'un pour développer votre site web, n'hésitez pas à me contacter.{% endblock %}" />
-        <meta property="og:url" content="{% block metaOgUrl %}{% if app.request.attributes.get('_route') is not empty %}{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}{% else %}{{ url('homepage') }}{% endif %}{% endblock %}" />
+        <meta property="og:title" content="{% block metaOgTitle %}{{ content.name }}{% endblock %}" />
+        <meta property="og:description" content="{% block metaOgDescription %}{{ content.meta_description }}{% endblock %}" />
+        <meta property="og:url" content="{% block metaOgUrl %}{% if curr_route is not empty %}{{ url(curr_route, app.request.attributes.get('_route_params')) }}{% else %}{{ url('homepage') }}{% endif %}{% endblock %}" />
         <meta property="og:type" content="{% block metaOgType %}website{% endblock %}" />
         <meta property="og:image" content="{% block metaOgImage %}{% image 'images/facebook.jpg' %}{{ app.request.getSchemeAndHttpHost() ~ asset_url }}{% endimage %}{% endblock %}" />
         <meta property="og:updated_time" content="{% block metaOgTime %}{{ 'today'|date('U') }}{% endblock %}" />
-        <meta property="og:site_name" content="{% block metaOgSiteName %}Valentin Commenge{% endblock %}" />
-        <meta property="og:locality" content="{% block metaOgLocality %}Paris{% endblock %}" />
-        <meta property="og:postal-code" content="{% block metaOgPostalCode %}75012{% endblock %}" />
-        <meta property="og:country-name" content="{% block metaOgCountryName %}France{% endblock %}" />
-        <meta property="og:email" content="{% block metaOgEmail %}txreplay@gmail.com{% endblock %}" />
+        <meta property="og:site_name" content="{% block metaOgSiteName %}{{ content.name }}{% endblock %}" />
+        <meta property="og:locality" content="{% block metaOgLocality %}{{ content.city }}{% endblock %}" />
+        <meta property="og:postal-code" content="{% block metaOgPostalCode %}{{ content.postal_code }}{% endblock %}" />
+        <meta property="og:country-name" content="{% block metaOgCountryName %}{{ content.country }}{% endblock %}" />
+        <meta property="og:email" content="{% block metaOgEmail %}{{ content.email_perso }}{% endblock %}" />
         <meta property="og:locale" content="{% block metaOgLocale %}fr_FR{% endblock %}">
     {% endblock %}
 
@@ -62,15 +64,28 @@
 
 <body>
 {% block body %}
-    {% block header %}
-        {% include 'front/header.html.twig' %}
-    {% endblock %}
+    <header>
+        <div class="wrapper">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{{ path('homepage') }}" {% if curr_route == 'homepage' %}class="active regular"{% endif %}>À propos</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('projects') }}" {% if curr_route == 'projects' %}class="active regular"{% endif %}>Projets</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('contact') }}" {% if curr_route == 'contact' %}class="active regular"{% endif %}>Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            <img src="{% image 'images/circle_picture.png' %}{{ asset_url }}{% endimage %}" class="logo" alt="Logo">
+            <h1 class="bold">{{ content.name|raw }}</h1>
+            <h2 class="regular">{{ content.job_title|raw }}, {{ content.city|raw }}</h2>
+        </div>
+    </header>
 
     {% block content %}
-    {% endblock %}
-
-    {% block footer %}
-        {% include 'front/footer.html.twig' %}
     {% endblock %}
 {% endblock %}
 

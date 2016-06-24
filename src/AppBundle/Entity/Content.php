@@ -31,13 +31,6 @@ class Content
     /**
      * @var string
      *
-     * @ORM\Column(name="`label`", type="string", length=255)
-     */
-    private $label;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="`value`", type="text")
      */
     private $value;
@@ -71,26 +64,6 @@ class Content
     public function setKey($key)
     {
         $this->key = $key;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLabel()
-    {
-        return $this->label;
-    }
-
-    /**
-     * @param string $label
-     *
-     * @return $this
-     */
-    public function setLabel($label)
-    {
-        $this->label = $label;
 
         return $this;
     }
