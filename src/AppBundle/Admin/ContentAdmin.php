@@ -50,8 +50,11 @@ class ContentAdmin extends AbstractAdmin
                 'label' => 'Libellé',
                 'help' => 'Ce libellé sera uniquement utilisé pour identifier le contenu dans la liste'
             ])
-            ->add('value', null, [
+            ->add('value', 'textarea', [
                 'label' => 'Valeur',
+                'attr' => [
+                    'class' => 'ckeditor'
+                ],
                 'help' => 'Cette donnée sera celle affichée dans le site'
             ])
         ;

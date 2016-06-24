@@ -4,16 +4,16 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class FrontController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        $content = $this->getDoctrine()->getRepository('AppBundle:Content')->getByKeys(['name', 'city', 'job_title']);
+        $keys = ['name', 'city', 'job_title', 'description'];
+        $content = $this->getDoctrine()->getRepository('AppBundle:Content')->getByKeys($keys);
 
         return $this->render('front/index.html.twig', [
             'content' => $content

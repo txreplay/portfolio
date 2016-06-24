@@ -26,7 +26,7 @@
         <meta name="twitter:card" content="{% block metaTwitterCard %}summary{% endblock %}" />
         <meta name="twitter:title" content="{% block metaTwitterTitle %}Valentin Commenge{% endblock %}" />
         <meta name="twitter:description" content="{% block metaTwitterDescription %}Bonjour, moi c'est Valentin ! Je suis développeur web sur Paris. Si vous cherchez quelqu'un pour développer votre site web, n'hésitez pas à me contacter.{% endblock %}" />
-        <meta name="twitter:image" content="{% block metaTwitterImage %}{% image 'images/circle_picture.jpg' %}{{ asset_url }}{% endimage %}{% endblock %}" />
+        <meta name="twitter:image" content="{% block metaTwitterImage %}{% image 'images/circle_picture.png' %}{{ app.request.getSchemeAndHttpHost() ~ asset_url }}{% endimage %}{% endblock %}" />
         <meta name="twitter:site" content="{% block metaTwitterSite %}@txreplay{% endblock %}" />
         <meta name="twitter:creator" content="{% block metaTwitterCreator %}@txreplay{% endblock %}" />
     {% endblock %}
