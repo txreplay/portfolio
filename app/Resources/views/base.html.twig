@@ -21,7 +21,6 @@
     <script src="{{ asset('bower_components/html5shiv/dist/html5shiv.js') }}"></script>
     <![endif]-->
 
-    {# TODO: Absolute URLS for images Twitter & Facebook #}
     {% block twitterCard %}
         <meta name="twitter:card" content="{% block metaTwitterCard %}summary{% endblock %}" />
         <meta name="twitter:title" content="{% block metaTwitterTitle %}Valentin Commenge{% endblock %}" />
@@ -36,7 +35,7 @@
         <meta property="og:description" content="{% block metaOgDescription %}Bonjour, moi c'est Valentin ! Je suis développeur web sur Paris. Si vous cherchez quelqu'un pour développer votre site web, n'hésitez pas à me contacter.{% endblock %}" />
         <meta property="og:url" content="{% block metaOgUrl %}{% if app.request.attributes.get('_route') is not empty %}{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}{% else %}{{ url('homepage') }}{% endif %}{% endblock %}" />
         <meta property="og:type" content="{% block metaOgType %}website{% endblock %}" />
-        <meta property="og:image" content="{% block metaOgImage %}{% image 'images/facebook.jpg' %}{{ asset_url }}{% endimage %}{% endblock %}" />
+        <meta property="og:image" content="{% block metaOgImage %}{% image 'images/facebook.jpg' %}{{ app.request.getSchemeAndHttpHost() ~ asset_url }}{% endimage %}{% endblock %}" />
         <meta property="og:updated_time" content="{% block metaOgTime %}{{ 'today'|date('U') }}{% endblock %}" />
         <meta property="og:site_name" content="{% block metaOgSiteName %}Valentin Commenge{% endblock %}" />
         <meta property="og:locality" content="{% block metaOgLocality %}Paris{% endblock %}" />

@@ -59,11 +59,11 @@ class ProjectAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('id')
-            ->add('title')
-            ->add('creationDate')
-            ->add('description')
-            ->add('type')
-            ->add('cover')
+            ->add('title', null, ['label' => 'Project\'s Title' ])
+            ->add('cover', null, ['label' => 'Project\'s Cover Image'])
+            ->add('type', null, ['label' => 'Project\'s Type'])
+            ->add('creationDate', null, ['label' => 'Project\'s Date'])
+            ->add('description', null, ['label' => 'Description'])
         ;
     }
 
@@ -74,10 +74,11 @@ class ProjectAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('title')
-            ->add('creationDate')
-            ->add('description')
-            ->add('type')
+            ->add('title', null, ['label' => 'Project\'s Title' ])
+            ->add('cover', null, ['label' => 'Project\'s Cover Image'])
+            ->add('type', null, ['label' => 'Project\'s Type'])
+            ->add('creationDate', null, ['label' => 'Project\'s Date'])
+            ->add('description', null, ['label' => 'Description'])
         ;
     }
 }
