@@ -1,0 +1,6 @@
+services:
+    app.admin.project:
+        class: AppBundle\Admin\ProjectAdmin
+        arguments: [~, AppBundle\Entity\Project, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Portfolio", label: "Projets" }

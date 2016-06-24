@@ -3,8 +3,31 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SONATA_CONTENT_EDITOR:
+            - ROLE_APP_ADMIN_CONTENT_LIST
+            - ROLE_APP_ADMIN_CONTENT_VIEW
+            - ROLE_APP_ADMIN_CONTENT_EDIT
+
+        ROLE_SONATA_CONTENT_ADMIN:
+            - ROLE_SONATA_CONTENT_EDITOR
+            - ROLE_APP_ADMIN_CONTENT_CREATE
+            - ROLE_APP_ADMIN_CONTENT_DELETE
+            - ROLE_APP_ADMIN_CONTENT_EXPORT
+
+        ROLE_SONATA_ARTICLE_ADMIN:
+            - ROLE_APP_ADMIN_ARTICLE_LIST
+            - ROLE_APP_ADMIN_ARTICLE_VIEW
+            - ROLE_APP_ADMIN_ARTICLE_EDIT
+            - ROLE_APP_ADMIN_ARTICLE_CREATE
+            - ROLE_APP_ADMIN_ARTICLE_DELETE
+            - ROLE_APP_ADMIN_ARTICLE_EXPORT
+
+        ROLE_ADMIN:
+            - ROLE_USER
+            - ROLE_SONATA_CONTENT_EDITOR
+            - ROLE_SONATA_ARTICLE_ADMIN
+        ROLE_SUPER_ADMIN:
+            - ROLE_ADMIN
 
     providers:
         fos_userbundle:
@@ -19,7 +42,6 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-
             logout:       true
             anonymous:    true
 
@@ -27,4 +49,4 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/admin/, role: ROLE_SUPER_ADMIN }

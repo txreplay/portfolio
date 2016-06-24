@@ -19,19 +19,27 @@ class AppKernel extends Kernel
 
             // TxReplay
             new AppBundle\AppBundle(),
+//            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
 
             // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
 
             // KNP
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 
             // FOS
             new FOS\UserBundle\FOSUserBundle(),
 
+            // IVORY
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

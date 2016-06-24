@@ -4,6 +4,8 @@ imports:
     - { resource: services.yml }
     - { resource: sonata/sonata_block.yml }
     - { resource: sonata/sonata_admin.yml }
+    - { resource: sonata/sonata_services.yml }
+    - { resource: sonata/sonata_formatter.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration

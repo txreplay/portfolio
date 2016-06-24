@@ -5,10 +5,23 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/skins/sonata/style.css') }}" type="text/css"
+          media="all"/>
+    <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/sets/markdown/style.css') }}"
+          type="text/css" media="all"/>
+    <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/sets/html/style.css') }}" type="text/css"
+          media="all"/>
+    <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/sets/textile/style.css') }}" type="text/css"
+          media="all"/>
+{% endblock %}
+
 {% block logo %}
     {% spaceless %}
         <a class="logo" href="{{ url('sonata_admin_dashboard') }}">
-            <span>TxReplay</span>
+            <span>TxReplay's Portfolio</span>
         </a>
     {% endspaceless %}
 {% endblock %}
@@ -71,3 +84,13 @@
         {% endfor %}
     </ul>
 {% endblock side_bar_nav %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/ivoryckeditor/ckeditor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/sonataformatter/markitup/sets/markdown/set.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/sonataformatter/markitup/sets/html/set.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/sonataformatter/markitup/sets/textile/set.js') }}" type="text/javascript"></script>
+{% endblock %}
