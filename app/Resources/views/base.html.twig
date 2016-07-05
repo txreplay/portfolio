@@ -69,13 +69,13 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="{{ path('homepage') }}" {% if curr_route == 'homepage' %}class="active regular"{% endif %}>À propos</a>
+                        <a href="{{ path('homepage') }}" {% if curr_route == 'homepage' %}class="active regular"{% endif %} data-tracking="menu-about">À propos</a>
                     </li>
                     <li>
-                        <a href="{{ path('projects') }}" {% if curr_route == 'projects' %}class="active regular"{% endif %}>Projets</a>
+                        <a href="{{ path('projects') }}" {% if curr_route == 'projects' %}class="active regular"{% endif %} data-tracking="menu-projects">Projets</a>
                     </li>
                     <li>
-                        <a href="{{ path('contact') }}" {% if curr_route == 'contact' %}class="active regular"{% endif %}>Contact</a>
+                        <a href="{{ path('contact') }}" {% if curr_route == 'contact' %}class="active regular"{% endif %} data-tracking="menu-contact">Contact</a>
                     </li>
                 </ul>
             </nav>
