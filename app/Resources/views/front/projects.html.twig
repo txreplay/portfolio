@@ -5,12 +5,16 @@
 {% block content %}
     <div id="projects">
         <div class="wrapper">
-            <h3 class="bold">Projets</h3>
-            <ul>
-                {% for project in projects %}
-                    <li>{{ project.title }}</li>
-                {% endfor %}
-            </ul>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <h3 class="bold">Projets</h3>
+                <ul>
+                    {% for project in projects %}
+                        <li>{{ project.title }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {% include 'partials/construction.html.twig' %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

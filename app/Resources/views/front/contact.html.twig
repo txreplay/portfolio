@@ -5,7 +5,11 @@
 {% block content %}
     <div id="contact">
         <div class="wrapper">
-            <h3 class="bold">Contact</h3>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <h3 class="bold">Contact</h3>
+            {% else %}
+                {% include 'partials/construction.html.twig' %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}
