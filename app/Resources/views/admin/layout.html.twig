@@ -1,0 +1,96 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block meta_tags %}
+    {{ parent() }}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/skins/sonata/style.css') }}" type="text/css"
+          media="all"/>
+    <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/sets/markdown/style.css') }}"
+          type="text/css" media="all"/>
+    <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/sets/html/style.css') }}" type="text/css"
+          media="all"/>
+    <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/sets/textile/style.css') }}" type="text/css"
+          media="all"/>
+{% endblock %}
+
+{% block logo %}
+    {% spaceless %}
+        <a class="logo" href="{{ url('sonata_admin_dashboard') }}">
+            <span>TxReplay's Portfolio</span>
+        </a>
+    {% endspaceless %}
+{% endblock %}
+
+{% block side_bar_after_nav %}{% endblock %}
+{% block sonata_sidebar_search %}{% endblock sonata_sidebar_search %}
+
+{% block side_bar_nav %}
+    <ul class="sidebar-menu">
+        {% for group in admin_pool.dashboardgroups %}
+            {% set display = (group.roles is empty or is_granted('ROLE_SUPER_ADMIN') ) %}
+            {% for role in group.roles if not display %}
+                {% set display = is_granted(role) %}
+            {% endfor %}
+
+            {% set item_count = 0 %}
+            {% if display %}
+                {% for admin in group.items if item_count == 0 %}
+                    {% if admin.hasroute('list') and admin.isGranted('LIST') %}
+                        {% set item_count = item_count+1 %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if display and (item_count > 0) %}
+                {% set active = false %}
+                {% for admin in group.items %}
+                    {% if admin.hasroute('list') and admin.isGranted('LIST') and app.request.get('_sonata_admin') == admin.code %}
+                        {% set active = true %}
+                    {% endif %}
+                {% endfor %}
+                <li class="treeview{% if active %} active{% endif %}">
+                    <a href="#">
+                        {% if group.icon|default() %}{{ group.icon|raw }}{% endif %}
+                        <span>{{ group.label|trans({}, group.label_catalogue) }}</span>
+                        <i class="fa pull-right fa-angle-left"></i>
+                    </a>
+                    <ul class="treeview-menu{% if active %} active{% endif %}">
+                        {% for admin in group.items %}
+                            {% if admin.hasroute('list') and admin.isGranted('LIST') %}
+                                <li{% if app.request.get('_sonata_admin') == admin.code %} class="active"{% endif %} style="clear: both;">
+
+                                    <span style="float: right; padding: 6px 10px;">
+                                    {% block side_bar_nav_shortcut %}{% endblock %}
+                                        {% if admin.hasroute('create') and admin.isGranted('CREATE') %}
+                                            <a href="{{ admin.generateUrl('create')}}"><i class="fa fa-plus-circle"></i></a>
+                                        {% endif %}
+                                        {% if admin.hasroute('list') and admin.isGranted('LIST') %}
+                                            <a href="{{ admin.generateUrl('list')}}"><i class="fa fa-list"></i></a>
+                                        {% endif %}
+                                    </span>
+
+                                    <a href="{{ admin.generateUrl('list')}}"><i class="fa fa-angle-double-right"></i> {{ admin.label|trans({}, admin.translationdomain) }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock side_bar_nav %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/ivoryckeditor/ckeditor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/sonataformatter/markitup/sets/markdown/set.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/sonataformatter/markitup/sets/html/set.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/sonataformatter/markitup/sets/textile/set.js') }}" type="text/javascript"></script>
+{% endblock %}

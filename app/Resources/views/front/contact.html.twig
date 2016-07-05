@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+    <div id="contact">
+        <div class="wrapper">
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <h3 class="bold">Contact</h3>
+            {% else %}
+                {% include 'partials/construction.html.twig' %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+services:
+    app.admin.project:
+        class: AppBundle\Admin\ProjectAdmin
+        arguments: [~, AppBundle\Entity\Project, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Portfolio", label: "Projets" }
+    app.admin.content:
+        class: AppBundle\Admin\ContentAdmin
+        arguments: [~, AppBundle\Entity\Content, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Portfolio", label: "Contenu"}
+    app.admin.social:
+        class: AppBundle\Admin\SocialAdmin
+        arguments: [~, AppBundle\Entity\Social, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Portfolio", label: "Social" }

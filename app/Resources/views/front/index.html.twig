@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+    'css/homepage.css'
+    filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+    <div id="homepage">
+        <h3 class="bold">À Propos</h3>
+
+        <div class="custom-description">
+            {{ content.description|raw }}
+        </div>
+    </div>
+{% endblock %}
