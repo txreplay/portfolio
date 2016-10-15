@@ -8,8 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 class ContactType extends AbstractType
 {
@@ -31,7 +33,7 @@ class ContactType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Votre email',
                     'required' => true,
-                    'autocomplete' => false,
+                    'autocomplete' => 'off',
                 ],
                 'label' => 'Votre email',
                 'constraints' => [
@@ -48,6 +50,12 @@ class ContactType extends AbstractType
                 'label' => 'Votre message',
                 'constraints' => [
                     new NotBlank(["message" => "Le champ message est obligatoire"]),
+                ]
+            ])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'language' => 'fr',
+                'constraints' => [
+                    new RecaptchaTrue(['message' => 'Le captcha n\'est pas valide.'])
                 ]
             ])
         ;

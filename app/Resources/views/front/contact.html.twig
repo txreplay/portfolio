@@ -31,14 +31,18 @@
                             {{ form_label(form.message) }}
                             {{ form_widget(form.message) }}
                         </div>
+                    <div class="field-wrapper">
+                        {{ form_widget(form.recaptcha) }}
+                    </div>
                     {{ form_rest(form) }}
-                    <input type="submit" value="Envoyer">
                     <div class="errors">
                         {{ form_errors(form) }}
                         {{ form_errors(form.name) }}
                         {{ form_errors(form.email) }}
                         {{ form_errors(form.message) }}
+                        {{ form_errors(form.recaptcha) }}
                     </div>
+                    <input type="submit" value="Envoyer">
                     {{ form_end(form) }}
                 {% else %}
                     <p class="success">Merci pour votre message, j'y répondrais dans les plus bref délais !</p>

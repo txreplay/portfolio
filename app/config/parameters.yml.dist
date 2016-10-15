@@ -12,6 +12,7 @@ parameters:
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
+    mailer_port:       587
     mailer_user:       ~
     mailer_password:   ~
 
@@ -20,3 +21,6 @@ parameters:
 
     mail_from: from@yourcompany.fr
     mail_to : to@yourcompany.fr
+
+    google_recaptcha_public_key: XXXXX
+    google_recaptcha_private_key: XXXXX
