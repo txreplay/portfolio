@@ -6,14 +6,14 @@
     <meta charset="{% block metaCharset %}utf-8{% endblock %}">
     <meta name="viewport" content="{% block metaViewport %}width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no{% endblock %}">
 
-    <title>{% block title %}{% endblock %} | {{ content.name|raw }} - {{ content.job_title|raw }}</title>
+    <title>{% block title %} | {{ content.name|raw }} - {{ content.job_title|raw }}{% endblock %}</title>
     <meta name="description" content="{% block metaDescription %}{{ content.meta_description|raw }}{% endblock %}" />
     <meta name="keywords" content="{% block metaKeywords %}{{ content.keywords|raw }}{% endblock %}">
     <meta name="geo.placename" content="{% block metaGeoPlacename %}{{ content.city_complete|raw }}{% endblock %}">
     <meta name="robots" content="{% block metaRobots %}index,follow{% endblock %}">
 
-    <meta name="author" content="{{ content.name|raw }}" />
-    <meta name="copyright" content="{{ content.name|raw }}" />
+    <meta name="author" content="{% block metaAuthor %}{{ content.name|raw }}{% endblock %}" />
+    <meta name="copyright" content="{% block metaCopyright %}{{ content.name|raw }}{% endblock %}" />
 
     {% block favicon %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -81,8 +81,8 @@
                 </ul>
             </nav>
             <img src="{% image 'images/circle_picture_kanako.png' %}{{ asset_url }}{% endimage %}" class="picture" alt="Logo">
-            <h2 class="bold">{{ content.name|raw }}</h2>
-            <h3 class="regular">{{ content.job_title|raw }}, {{ content.city|raw }}</h3>
+            <h2 class="bold">{% block titleName %}{{ content.name|raw }}{% endblock %}</h2>
+            <h3 class="regular">{% block titleDesc %}{{ content.job_title|raw }}, {{ content.city|raw }}{% endblock %}</h3>
         </div>
     </header>
 

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur 403 - Accès refusé{% endblock %}
+
+{% block metaDescription %}{% endblock %}
+{% block metaKeywords %}{% endblock %}
+{% block metaGeoPlacename %}{% endblock %}
+{% block metaAuthor %}{% endblock %}
+{% block metaCopyright %}{% endblock %}
+{% block twitterCard %}{% endblock %}
+{% block metaOg %}{% endblock %}
+{% block titleName %}Valentin Commenge{% endblock %}
+{% block titleDesc %}Développeur web, Paris{% endblock %}
+
+{% block content %}
+    <div id="error error-404">
+        <h4 class="bold">Oups ! Erreur 403 - Accès refusé</h4>
+
+        <div class="custom-description">
+            Désolé, mais vous n'avez pas les droits nécessaires pour afficher cette page. Si vous pensez qu'il s'agit d'une erreur, n'hésitez pas à <strong><a href="{{ path('contact') }}">m'envoyer un mail</a></strong> !
+        </div>
+    </div>
+{% endblock %}

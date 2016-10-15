@@ -14,42 +14,37 @@
 {% block content %}
     <div id="contact">
         <div class="wrapper">
-            {% if is_granted('ROLE_SUPER_ADMIN') %}
-                <h4 class="bold">Contact</h4>
+            <h4 class="bold">Contact</h4>
 
-                {% if success == false %}
-                    {{ form_start(form) }}
-                        <div class="field-wrapper">
-                            {{ form_label(form.name) }}
-                            {{ form_widget(form.name) }}
-                        </div>
-                        <div class="field-wrapper">
-                            {{ form_label(form.email) }}
-                            {{ form_widget(form.email) }}
-                        </div>
-                        <div class="field-wrapper">
-                            {{ form_label(form.message) }}
-                            {{ form_widget(form.message) }}
-                        </div>
+            {% if success == false %}
+                {{ form_start(form) }}
                     <div class="field-wrapper">
-                        {{ form_widget(form.recaptcha) }}
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name) }}
                     </div>
-                    {{ form_rest(form) }}
-                    <div class="errors">
-                        {{ form_errors(form) }}
-                        {{ form_errors(form.name) }}
-                        {{ form_errors(form.email) }}
-                        {{ form_errors(form.message) }}
-                        {{ form_errors(form.recaptcha) }}
+                    <div class="field-wrapper">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
                     </div>
-                    <input type="submit" value="Envoyer">
-                    {{ form_end(form) }}
-                {% else %}
-                    <p class="success">Merci pour votre message, j'y répondrais dans les plus bref délais !</p>
-                {% endif %}
-
+                    <div class="field-wrapper">
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message) }}
+                    </div>
+                <div class="field-wrapper">
+                    {{ form_widget(form.recaptcha) }}
+                </div>
+                {{ form_rest(form) }}
+                <div class="errors">
+                    {{ form_errors(form) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_errors(form.message) }}
+                    {{ form_errors(form.recaptcha) }}
+                </div>
+                <input type="submit" value="Envoyer">
+                {{ form_end(form) }}
             {% else %}
-                {% include 'partials/construction.html.twig' %}
+                <p class="success">Merci pour votre message, j'y répondrais dans les plus bref délais !</p>
             {% endif %}
         </div>
     </div>
