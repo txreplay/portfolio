@@ -49,7 +49,7 @@ body {
 }
 
 /* HEADER */
-#logo {
+h1#logo {
     float: left;
     font-weight: 500;
     margin: 20px 0 0 5px;
@@ -60,9 +60,16 @@ nav {
 }
 
 @media all and (max-width: 666px) {
-    nav {
+
+    h1#logo {
         float: none;
+        margin: 25px auto;
+    }
+
+    nav {
         text-align: center;
+        float: none;
+        margin: 10px auto;
     }
 }
 
