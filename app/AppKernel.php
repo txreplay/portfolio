@@ -40,6 +40,9 @@ class AppKernel extends Kernel
 
             // IVORY
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+
+            // EWZ
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

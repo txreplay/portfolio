@@ -2,14 +2,77 @@
 
 {% block title %}Contact{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+    'css/contact.css'
+    filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block content %}
     <div id="contact">
         <div class="wrapper">
-            {% if is_granted('ROLE_SUPER_ADMIN') %}
-                <h3 class="bold">Contact</h3>
+            <h4 class="bold">Contact</h4>
+
+            {% if success == false %}
+                {{ form_start(form) }}
+                    <div class="field-wrapper">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name) }}
+                    </div>
+                    <div class="field-wrapper">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                    </div>
+                    <div class="field-wrapper">
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message) }}
+                    </div>
+                <div class="field-wrapper">
+                    {{ form_widget(form.recaptcha) }}
+                </div>
+                {{ form_rest(form) }}
+                <div class="errors">
+                    {{ form_errors(form) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_errors(form.message) }}
+                    {{ form_errors(form.recaptcha) }}
+                </div>
+                <input type="submit" value="Envoyer">
+                {{ form_end(form) }}
             {% else %}
-                {% include 'partials/construction.html.twig' %}
+                <p class="success">Merci pour votre message, j'y répondrais dans les plus bref délais !</p>
             {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function(){
+            var onClass = "on";
+            var showClass = "show";
+
+            $("input, textarea").bind("checkval", function() {
+                var label = $(this).prev("label");
+                if(this.value !== ""){
+                    label.addClass(showClass);
+                } else {
+                    label.removeClass(showClass);
+                }
+            }).on("keyup", function() {
+                $(this).trigger("checkval");
+            }).on("focus", function() {
+                $(this).prev("label").addClass(onClass);
+            }).on("blur", function() {
+                $(this).prev("label").removeClass(onClass);
+            }).trigger("checkval");
+        });
+
+    </script>
 {% endblock %}

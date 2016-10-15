@@ -6,14 +6,14 @@
     <meta charset="{% block metaCharset %}utf-8{% endblock %}">
     <meta name="viewport" content="{% block metaViewport %}width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no{% endblock %}">
 
-    <title>{% block title %}{% endblock %} | {{ content.name|raw }} - {{ content.job_title|raw }}</title>
+    <title>{% block title %} | {{ content.name|raw }} - {{ content.job_title|raw }}{% endblock %}</title>
     <meta name="description" content="{% block metaDescription %}{{ content.meta_description|raw }}{% endblock %}" />
     <meta name="keywords" content="{% block metaKeywords %}{{ content.keywords|raw }}{% endblock %}">
     <meta name="geo.placename" content="{% block metaGeoPlacename %}{{ content.city_complete|raw }}{% endblock %}">
     <meta name="robots" content="{% block metaRobots %}index,follow{% endblock %}">
 
-    <meta name="author" content="{{ content.name|raw }}" />
-    <meta name="copyright" content="{{ content.name|raw }}" />
+    <meta name="author" content="{% block metaAuthor %}{{ content.name|raw }}{% endblock %}" />
+    <meta name="copyright" content="{% block metaCopyright %}{{ content.name|raw }}{% endblock %}" />
 
     {% block favicon %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -77,6 +77,7 @@
 {% block body %}
     <header>
         <div class="wrapper">
+            <h1 id="logo">txreplay.</h1>
             <nav>
                 <ul>
                     <li>
@@ -90,9 +91,9 @@
                     </li>
                 </ul>
             </nav>
-            <img src="{% image 'images/circle_picture.png' %}{{ asset_url }}{% endimage %}" class="logo" alt="Logo">
-            <h1 class="bold">{{ content.name|raw }}</h1>
-            <h2 class="regular">{{ content.job_title|raw }}, {{ content.city|raw }}</h2>
+            <img src="{% image 'images/circle_picture_kanako.png' %}{{ asset_url }}{% endimage %}" class="picture" alt="Logo">
+            <h2 class="bold">{% block titleName %}{{ content.name|raw }}{% endblock %}</h2>
+            <h3 class="regular">{% block titleDesc %}{{ content.job_title|raw }}, {{ content.city|raw }}{% endblock %}</h3>
         </div>
     </header>
 
@@ -101,10 +102,7 @@
 {% endblock %}
 
 {% block javascripts %}
-
     <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-
-    {% if app.environment != 'dev' %}<script>(function(){window.ok_w_id="561cbf1477f4d57e5b1470ce";var ok_w = document.createElement('script'); ok_w.type = 'text/javascript'; ok_w.async = true;ok_w.src = 'https://cdn.optkit.com/assets/widget/widget.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ok_w, s);})();</script>{% endif %}
 {% endblock %}
 
 {% block analytics %}

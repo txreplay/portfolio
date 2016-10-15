@@ -68,6 +68,7 @@ doctrine:
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
+    port:      "%mailer_port%"
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
@@ -85,3 +86,8 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+
+# EWZ ReCaptcha Configuration
+ewz_recaptcha:
+    public_key:  "%google_recaptcha_public_key%"
+    private_key: "%google_recaptcha_private_key%"

@@ -19,12 +19,21 @@ a {
     margin: 0 auto;
 }
 
-h1 { font-size: 25px; }
+h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
 h2 {
+    font-size: 25px;
+
+}
+h3 {
     font-size: 18px;
     margin: 5px 0 40px 0;
 }
-h3 {
+
+h4 {
     font-size: 22px;
     margin-bottom: 30px;
 }
@@ -40,15 +49,27 @@ body {
 }
 
 /* HEADER */
+h1#logo {
+    float: left;
+    font-weight: 500;
+    margin: 20px 0 0 5px;
+}
 nav {
     float: right;
     margin: 20px 5px 0 0;
 }
 
 @media all and (max-width: 666px) {
-    nav {
+
+    h1#logo {
         float: none;
+        margin: 25px auto;
+    }
+
+    nav {
         text-align: center;
+        float: none;
+        margin: 10px auto;
     }
 }
 
@@ -59,7 +80,7 @@ nav ul li a {
     border: none;
 }
 
-.logo {
+.picture {
     display: block;
     width: 150px;
     margin: 40px auto;
@@ -68,7 +89,7 @@ nav ul li a {
 }
 
 @media all and (max-width: 666px) {
-    .logo {
+    .picture {
         padding-top: 0;
     }
 }

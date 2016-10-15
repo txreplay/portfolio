@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur 500 - Page non trouvée{% endblock %}
+
+{% block metaDescription %}{% endblock %}
+{% block metaKeywords %}{% endblock %}
+{% block metaGeoPlacename %}{% endblock %}
+{% block metaAuthor %}{% endblock %}
+{% block metaCopyright %}{% endblock %}
+{% block twitterCard %}{% endblock %}
+{% block metaOg %}{% endblock %}
+{% block titleName %}Valentin Commenge{% endblock %}
+{% block titleDesc %}Développeur web, Paris{% endblock %}
+
+{% block content %}
+    <div id="error error-404">
+        <h4 class="bold">Oups ! Erreur 500 - Erreur interne au serveur</h4>
+
+        <div class="custom-description">
+            Désolé, mais il y a eu un problème avec le serveur. Si vous pensez qu'il s'agit d'une erreur, n'hésitez pas à <strong><a href="{{ path('contact') }}">m'envoyer un mail</a></strong> !
+        </div>
+    </div>
+{% endblock %}

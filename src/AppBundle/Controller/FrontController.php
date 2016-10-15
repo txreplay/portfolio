@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class FrontController extends Controller
@@ -41,10 +42,27 @@ class FrontController extends Controller
     /**
      * @Route("/contact", name="contact")
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
+        $success = false;
+
+        $form = $this->createForm('AppBundle\Form\ContactType',null,array(
+            'action' => $this->generateUrl('contact'),
+            'method' => 'POST'
+        ));
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+            if($form->isValid()){
+                $this->sendEmail($form->getData());
+                $success = true;
+            }
+        }
+
         return $this->render('front/contact.html.twig', [
             'content'  => $this->getContent(),
+            'success'  => $success,
+            'form' => $form->createView()
         ]);
     }
 
@@ -68,5 +86,22 @@ class FrontController extends Controller
             $content[$contents->getKey()] = $contents->getValue();
         }
         return $content;
+    }
+
+    private function sendEmail($data){
+        $message = \Swift_Message::newInstance()
+            ->setSubject('[txreplay.fr] '. $data['name'] . ' vous a laissé un message')
+            ->setFrom($this->getParameter('mail_from'))
+            ->setTo($this->getParameter('mail_to'))
+            ->setBody(
+                $this->renderView(
+                    'emails/email_contact.html.twig', [
+                        'data' => $data
+                    ]
+                ),
+                'text/html'
+            );
+
+        $this->get('mailer')->send($message);
     }
 }
