@@ -66,6 +66,7 @@
 {% block body %}
     <header>
         <div class="wrapper">
+            <h1 id="logo">txreplay.</h1>
             <nav>
                 <ul>
                     <li>
@@ -79,9 +80,9 @@
                     </li>
                 </ul>
             </nav>
-            <img src="{% image 'images/circle_picture.png' %}{{ asset_url }}{% endimage %}" class="logo" alt="Logo">
-            <h1 class="bold">{{ content.name|raw }}</h1>
-            <h2 class="regular">{{ content.job_title|raw }}, {{ content.city|raw }}</h2>
+            <img src="{% image 'images/circle_picture.png' %}{{ asset_url }}{% endimage %}" class="picture" alt="Logo">
+            <h2 class="bold">{{ content.name|raw }}</h2>
+            <h3 class="regular">{{ content.job_title|raw }}, {{ content.city|raw }}</h3>
         </div>
     </header>
 
