@@ -66,6 +66,7 @@
 {% block body %}
     <header>
         <div class="wrapper">
+            <h1 id="logo">txreplay.</h1>
             <nav>
                 <ul>
                     <li>
@@ -79,9 +80,9 @@
                     </li>
                 </ul>
             </nav>
-            <img src="{% image 'images/circle_picture.png' %}{{ asset_url }}{% endimage %}" class="logo" alt="Logo">
-            <h1 class="bold">{{ content.name|raw }}</h1>
-            <h2 class="regular">{{ content.job_title|raw }}, {{ content.city|raw }}</h2>
+            <img src="{% image 'images/circle_picture_kanako.png' %}{{ asset_url }}{% endimage %}" class="picture" alt="Logo">
+            <h2 class="bold">{{ content.name|raw }}</h2>
+            <h3 class="regular">{{ content.job_title|raw }}, {{ content.city|raw }}</h3>
         </div>
     </header>
 
@@ -90,10 +91,7 @@
 {% endblock %}
 
 {% block javascripts %}
-
     <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-
-    {% if app.environment != 'dev' %}<script>(function(){window.ok_w_id="561cbf1477f4d57e5b1470ce";var ok_w = document.createElement('script'); ok_w.type = 'text/javascript'; ok_w.async = true;ok_w.src = 'https://cdn.optkit.com/assets/widget/widget.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ok_w, s);})();</script>{% endif %}
 {% endblock %}
 
 {% block analytics %}
