@@ -1,0 +1,55 @@
+form {
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.field-wrapper {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 14px;
+    color: black;
+    transition: all 0.6s ease-in-out;
+    opacity: 0;
+    font-weight: bold;
+}
+
+label.on { color: black; }
+
+label.show {
+    top: -20px;
+    opacity: 1;
+}
+
+input[type=text], input[type=email], textarea {
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 3px 5px;
+    width: 100%;
+    min-height: 20px;
+}
+
+textarea {
+    resize:vertical;
+    line-height: 20px;
+}
+
+input[type=submit] {
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    padding: 15px 40px;
+    background: white;
+    color: black;
+    border: 1px solid black;
+}
