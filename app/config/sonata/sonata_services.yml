@@ -9,8 +9,3 @@ services:
         arguments: [~, AppBundle\Entity\Content, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: "Portfolio", label: "Contenu"}
-    app.admin.social:
-        class: AppBundle\Admin\SocialAdmin
-        arguments: [~, AppBundle\Entity\Social, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Portfolio", label: "Social" }
