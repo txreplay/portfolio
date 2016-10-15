@@ -40,6 +40,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        smartlook_api_key: "%smartlook_api_key%"
 
 # Doctrine Configuration
 doctrine:
