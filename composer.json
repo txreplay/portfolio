@@ -36,7 +36,8 @@
         "sonata-project/easy-extends-bundle": "^2.1",
         "sonata-project/intl-bundle": "^2.2",
         "sonata-project/formatter-bundle": "^3.0",
-        "excelwebzone/recaptcha-bundle": "^1.4"
+        "excelwebzone/recaptcha-bundle": "^1.4",
+        "sentry/sentry-symfony": "^0.5.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

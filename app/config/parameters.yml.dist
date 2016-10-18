@@ -26,3 +26,5 @@ parameters:
     google_recaptcha_private_key: XXXXX
 
     smartlook_api_key: XXXXX
+
+    sentry_dsn: XXXXX
