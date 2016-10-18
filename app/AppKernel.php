@@ -43,6 +43,9 @@ class AppKernel extends Kernel
 
             // EWZ
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
+
+            // Sentry
+            new Sentry\SentryBundle\SentryBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
