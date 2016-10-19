@@ -5,7 +5,7 @@
     "description": "A portfolio developped with Symfony3.",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "AppBundle\\": "src/AppBundle"
         },
         "classmap": [
             "app/AppKernel.php",
