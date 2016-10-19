@@ -27,4 +27,4 @@ parameters:
 
     smartlook_api_key: XXXXX
 
-    sentry_dsn: XXXXX
+    sentry_dsn: "https://xxxxx:xxxxx@sentry.io/xxxxx"
