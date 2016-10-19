@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6e4850555a9f8aca0645233a14054a78",
-    "content-hash": "8316b4e8e2c51b86264c4edd37b1505f",
+    "hash": "43a51dd2604cbc3923f707afc3aed953",
+    "content-hash": "af6700f7853680ffb396ea48e97215bd",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1039,12 +1039,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "9c64d6fa7ae264828b2ec98aca847840b200bd56"
+                "reference": "4393a98891a03fb7628c546aee4e5ced699c83de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/9c64d6fa7ae264828b2ec98aca847840b200bd56",
-                "reference": "9c64d6fa7ae264828b2ec98aca847840b200bd56",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/4393a98891a03fb7628c546aee4e5ced699c83de",
+                "reference": "4393a98891a03fb7628c546aee4e5ced699c83de",
                 "shasum": ""
             },
             "require": {
@@ -1108,7 +1108,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-10-14 20:44:45"
+            "time": "2016-10-17 07:51:36"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1670,16 +1670,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf"
+                "reference": "c0125896dbb151380ab47e96c621741e79623beb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/088c04e2f261c33bed6ca5245491cfca69195ccf",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/c0125896dbb151380ab47e96c621741e79623beb",
+                "reference": "c0125896dbb151380ab47e96c621741e79623beb",
                 "shasum": ""
             },
             "require": {
@@ -1714,7 +1714,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-04-03 06:00:07"
+            "time": "2016-10-17 15:23:22"
         },
         {
             "name": "psr/cache",
