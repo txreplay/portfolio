@@ -14,12 +14,14 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             // TxReplay
             new AppBundle\AppBundle(),
-//            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+
+            // Doctrine
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
             // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
