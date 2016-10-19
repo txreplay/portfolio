@@ -1,7 +1,8 @@
 {
-    "name": "mylittleparis/portfolio",
+    "name": "txreplay/portfolio",
     "license": "proprietary",
     "type": "project",
+    "description": "A portfolio developped with Symfony3.",
     "autoload": {
         "psr-4": {
             "": "src/"
