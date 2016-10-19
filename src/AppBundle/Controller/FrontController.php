@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,12 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FrontController extends Controller
 {
-
-//    protected $keys;
-//
-//    public function __construct() {
-//        $this->keys = ['name', 'city', 'job_title', 'description'];
-//    }
 
     /**
      * @Route("/", name="homepage")
@@ -46,7 +41,7 @@ class FrontController extends Controller
     {
         $success = false;
 
-        $form = $this->createForm('AppBundle\Form\ContactType',null,array(
+        $form = $this->createForm(ContactType::class,null,array(
             'action' => $this->generateUrl('contact'),
             'method' => 'POST'
         ));
