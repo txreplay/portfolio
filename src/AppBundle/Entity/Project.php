@@ -75,7 +75,7 @@ class Project
      */
     private $type;
 
-    function __toString()
+    public function __toString()
     {
         return ($this->title)? $this->title : 'New Project';
     }
