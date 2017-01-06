@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projets {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div id="projects">
+        <div class="wrapper">
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <h4 class="bold">Projets</h4>
+                <ul>
+                    {% for project in projects %}
+                        <li>{{ project.title }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {% include 'partials/construction.html.twig' %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
