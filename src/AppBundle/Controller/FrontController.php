@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,7 @@ class FrontController extends Controller
 
     /**
      * @Route("/", name="homepage")
+     * @Method({"GET"})
      * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function indexAction()
@@ -23,6 +25,7 @@ class FrontController extends Controller
 
     /**
      * @Route("/projets", name="projects")
+     * @Method({"GET"})
      * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function projectsAction()
@@ -36,6 +39,7 @@ class FrontController extends Controller
 
     /**
      * @Route("/projet/{slug}", name="project_single")
+     * @Method({"GET"})
      * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function projectSingleAction($slug)
@@ -49,6 +53,7 @@ class FrontController extends Controller
 
     /**
      * @Route("/contact", name="contact")
+     * @Method({"GET", "POST"})
      */
     public function contactAction(Request $request)
     {
