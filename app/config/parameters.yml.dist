@@ -17,7 +17,7 @@ parameters:
     mailer_password:   XXX
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            59cd69ec2f80b
 
     mail_from: from@yourcompany.fr
     mail_to : to@yourcompany.fr
