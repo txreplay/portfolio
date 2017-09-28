@@ -1,0 +1,8 @@
+{% block twitterCard %}
+    <meta name="twitter:card" content="{% block metaTwitterCard %}summary{% endblock %}" />
+    <meta name="twitter:title" content="{% block metaTwitterTitle %}{{ content.name|raw_desc }}{% endblock %}" />
+    <meta name="twitter:description" content="{% block metaTwitterDescription %}{{ content.meta_description|raw_desc }}{% endblock %}" />
+    <meta name="twitter:image" content="{% block metaTwitterImage %}{% image 'images/circle_picture.png' %}{{ app.request.getSchemeAndHttpHost() ~ asset_url }}{% endimage %}{% endblock %}" />
+    <meta name="twitter:site" content="{% block metaTwitterSite %}@{{ content.pseudo|raw_desc }}{% endblock %}" />
+    <meta name="twitter:creator" content="{% block metaTwitterCreator %}@{{ content.pseudo|raw_desc }}{% endblock %}" />
+{% endblock %}
