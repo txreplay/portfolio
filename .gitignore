@@ -42,13 +42,8 @@
 # Bower
 /web/bower_components/
 
-# PhpStorm
-.idea/
-.idea/*
-
 # Shitty files
 */.DS_Store
-.DS_Store
 ._*
 .Spotlight-V100
 .Trashes
