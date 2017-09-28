@@ -6,14 +6,14 @@
     <meta charset="{% block metaCharset %}utf-8{% endblock %}">
     <meta name="viewport" content="{% block metaViewport %}width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no{% endblock %}">
 
-    <title>{% block title %} | {{ content.name|raw }} - {{ content.job_title|raw }}{% endblock %}</title>
-    <meta name="description" content="{% block metaDescription %}{{ content.meta_description|raw }}{% endblock %}" />
-    <meta name="keywords" content="{% block metaKeywords %}{{ content.keywords|raw }}{% endblock %}">
-    <meta name="geo.placename" content="{% block metaGeoPlacename %}{{ content.city_complete|raw }}{% endblock %}">
+    <title>{% block title %} | {{ content.name|raw_desc }} - {{ content.job_title|raw_desc }}{% endblock %}</title>
+    <meta name="description" content="{% block metaDescription %}{{ content.meta_description|raw_desc }}{% endblock %}" />
+    <meta name="keywords" content="{% block metaKeywords %}{{ content.keywords|raw_desc }}{% endblock %}">
+    <meta name="geo.placename" content="{% block metaGeoPlacename %}{{ content.city_complete|raw_desc }}{% endblock %}">
     <meta name="robots" content="{% block metaRobots %}index,follow{% endblock %}">
 
-    <meta name="author" content="{% block metaAuthor %}{{ content.name|raw }}{% endblock %}" />
-    <meta name="copyright" content="{% block metaCopyright %}{{ content.name|raw }}{% endblock %}" />
+    <meta name="author" content="{% block metaAuthor %}{{ content.name|raw_desc }}{% endblock %}" />
+    <meta name="copyright" content="{% block metaCopyright %}{{ content.name|raw_desc }}{% endblock %}" />
 
     {% block favicon %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -25,25 +25,25 @@
 
     {% block twitterCard %}
         <meta name="twitter:card" content="{% block metaTwitterCard %}summary{% endblock %}" />
-        <meta name="twitter:title" content="{% block metaTwitterTitle %}{{ content.name|raw }}{% endblock %}" />
-        <meta name="twitter:description" content="{% block metaTwitterDescription %}{{ content.meta_description|raw }}{% endblock %}" />
+        <meta name="twitter:title" content="{% block metaTwitterTitle %}{{ content.name|raw_desc }}{% endblock %}" />
+        <meta name="twitter:description" content="{% block metaTwitterDescription %}{{ content.meta_description|raw_desc }}{% endblock %}" />
         <meta name="twitter:image" content="{% block metaTwitterImage %}{% image 'images/circle_picture.png' %}{{ app.request.getSchemeAndHttpHost() ~ asset_url }}{% endimage %}{% endblock %}" />
-        <meta name="twitter:site" content="{% block metaTwitterSite %}@{{ content.pseudo|raw }}{% endblock %}" />
-        <meta name="twitter:creator" content="{% block metaTwitterCreator %}@{{ content.pseudo|raw }}{% endblock %}" />
+        <meta name="twitter:site" content="{% block metaTwitterSite %}@{{ content.pseudo|raw_desc }}{% endblock %}" />
+        <meta name="twitter:creator" content="{% block metaTwitterCreator %}@{{ content.pseudo|raw_desc }}{% endblock %}" />
     {% endblock %}
 
     {% block metaOg %}
-        <meta property="og:title" content="{% block metaOgTitle %}{{ content.name|raw }}{% endblock %}" />
-        <meta property="og:description" content="{% block metaOgDescription %}{{ content.meta_description|raw }}{% endblock %}" />
+        <meta property="og:title" content="{% block metaOgTitle %}{{ content.name|raw_desc }}{% endblock %}" />
+        <meta property="og:description" content="{% block metaOgDescription %}{{ content.meta_description|raw_desc }}{% endblock %}" />
         <meta property="og:url" content="{% block metaOgUrl %}{% if curr_route is not empty %}{{ url(curr_route, app.request.attributes.get('_route_params')) }}{% else %}{{ url('homepage') }}{% endif %}{% endblock %}" />
         <meta property="og:type" content="{% block metaOgType %}website{% endblock %}" />
         <meta property="og:image" content="{% block metaOgImage %}{% image 'images/facebook.jpg' %}{{ app.request.getSchemeAndHttpHost() ~ asset_url }}{% endimage %}{% endblock %}" />
         <meta property="og:updated_time" content="{% block metaOgTime %}{{ 'today'|date('U') }}{% endblock %}" />
-        <meta property="og:site_name" content="{% block metaOgSiteName %}{{ content.name|raw }}{% endblock %}" />
-        <meta property="og:locality" content="{% block metaOgLocality %}{{ content.city|raw }}{% endblock %}" />
-        <meta property="og:postal-code" content="{% block metaOgPostalCode %}{{ content.postal_code|raw }}{% endblock %}" />
-        <meta property="og:country-name" content="{% block metaOgCountryName %}{{ content.country|raw }}{% endblock %}" />
-        <meta property="og:email" content="{% block metaOgEmail %}{{ content.email_perso|raw }}{% endblock %}" />
+        <meta property="og:site_name" content="{% block metaOgSiteName %}{{ content.name|raw_desc }}{% endblock %}" />
+        <meta property="og:locality" content="{% block metaOgLocality %}{{ content.city|raw_desc }}{% endblock %}" />
+        <meta property="og:postal-code" content="{% block metaOgPostalCode %}{{ content.postal_code|raw_desc }}{% endblock %}" />
+        <meta property="og:country-name" content="{% block metaOgCountryName %}{{ content.country|raw_desc }}{% endblock %}" />
+        <meta property="og:email" content="{% block metaOgEmail %}{{ content.email_perso|raw_desc }}{% endblock %}" />
         <meta property="og:locale" content="{% block metaOgLocale %}fr_FR{% endblock %}">
     {% endblock %}
 
@@ -99,8 +99,8 @@
 
             {% block headerTitle %}
                 <img src="{% image 'images/circle_picture_kanako.png' %}{{ asset_url }}{% endimage %}" class="picture" alt="Logo">
-                <h2 class="bold">{% block titleName %}{{ content.name|raw }}{% endblock %}</h2>
-                <h3 class="regular">{% block titleDesc %}{{ content.job_title|raw }}, {{ content.city|raw }}{% endblock %}</h3>
+                <h2 class="bold">{% block titleName %}{{ content.name|raw_desc }}{% endblock %}</h2>
+                <h3 class="regular">{% block titleDesc %}{{ content.job_title|raw_desc }}, {{ content.city|raw_desc }}{% endblock %}</h3>
             {% endblock %}
         </div>
     </header>

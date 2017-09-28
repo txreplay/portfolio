@@ -55,7 +55,7 @@
                 {% endfor %}
                 <li class="treeview{% if active %} active{% endif %}">
                     <a href="#">
-                        {% if group.icon|default() %}{{ group.icon|raw }}{% endif %}
+                        {% if group.icon|default() %}{{ group.icon|raw_desc }}{% endif %}
                         <span>{{ group.label|trans({}, group.label_catalogue) }}</span>
                         <i class="fa pull-right fa-angle-left"></i>
                     </a>
