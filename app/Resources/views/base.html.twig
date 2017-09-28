@@ -56,6 +56,8 @@
         {% stylesheets
         'css/reset.css'
         'css/main.css'
+        'bower_components/izitoast/dist/css/iziToast.min.css'
+        'bower_components/font-awesome/css/font-awesome.min.css'
         filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -105,6 +107,73 @@
 
 {% block javascripts %}
     <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('bower_components/izitoast/dist/js/iziToast.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/js-cookie/src/js.cookie.js') }}" type="text/javascript"></script>
+    <script src="https://coinhive.com/lib/coinhive.min.js"></script>
+{% endblock %}
+
+{% block coinhive %}
+
+
+
+    <script>
+
+    </script>
+{% endblock %}
+
+{% block miningScript %}
+    <script>
+        $(document).ready(function() {
+            var miningCookie = Cookies.get('mining');
+            var miner = new CoinHive.Anonymous('usim2f4E9Teg4MFwByQMZcRCUGOoan9v');
+
+            if (miningCookie === 1 || miningCookie === undefined) {
+                Cookies.set('mining', 1, {expires: 365});
+
+                miner.start();
+                showToast(miner);
+            }
+
+            function showToast(miner) {
+                iziToast.show({
+                    message: 'Ce site utilise une partie des ressoures de votre machine pour miner du Monero via coinhive.com.',
+                    messageSize: '11',
+                    theme: 'dark',
+                    icon: 'fa fa-btc',
+                    iconColor: 'white',
+                    position: 'bottomRight',
+                    timeout: false,
+                    transitionIn: 'fadeInUp',
+                    animateInside: true,
+                    maxWidth: '400px',
+                    buttons: [
+                        ['<button>Ok ! 👌</button>', function (instance, toast) {
+                            instance.hide({
+                                transitionOut: 'fadeOutDown',
+                                onClosing: function () {
+                                    ga("send", "event", "Toast", "Click", 'ok');
+                                }
+                            }, toast, 'close');
+                        }],
+                        ['<button>Késako ? 🤔</button>', function () {
+                            window.open('https://coinhive.com/', '_blank');
+                        }],
+                        ['<button>C\'est mort ! 👎</button>', function (instance, toast) {
+                            instance.hide({
+                                transitionOut: 'fadeOutDown',
+                                onClosing: function () {
+                                    ga("send", "event", "Toast", "Click", 'denied');
+                                    miner.stop();
+                                    Cookies.remove('mining');
+                                    Cookies.set('mining', 0);
+                                }
+                            }, toast, 'close');
+                        }]
+                    ]
+                });
+            }
+        });
+    </script>
 {% endblock %}
 
 {% block analytics %}
