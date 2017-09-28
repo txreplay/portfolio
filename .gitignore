@@ -20,6 +20,7 @@
 !bin/console
 !bin/symfony_requirements
 /composer.phar
+/vendor/
 
 # Assets and user uploads
 /web/bundles/
