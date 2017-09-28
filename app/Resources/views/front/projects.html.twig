@@ -2,14 +2,24 @@
 
 {% block title %}Projets {{ parent() }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets 'css/projects.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block headerTitle %}{% endblock %}
+
 {% block content %}
-    <div id="projects">
+    <div id="projects" class="content">
         <div class="wrapper">
             {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <h4 class="bold">Projets</h4>
-                <ul>
+                <ul class="projects-list">
                     {% for project in projects %}
-                        <li>{{ project.title }}</li>
+                        <li class="projects-item"><a href="{{ path('project_single', {'slug': project.slug}) }}">{{ project.title }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}
