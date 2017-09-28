@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project.title }} {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets 'css/project_single.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block headerTitle %}{% endblock %}
+
+{% block content %}
+    <div id="project_single" class="content">
+        <div class="wrapper">
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <h4 class="bold">{{ project.title }}</h4>
+
+                <div>{{ project.description|raw }}</div>
+            {% else %}
+                {% include 'partials/construction.html.twig' %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

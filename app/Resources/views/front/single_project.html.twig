@@ -2,8 +2,10 @@
 
 {% block title %}Projets {{ parent() }}{% endblock %}
 
+{% block headerTitle %}{% endblock %}
+
 {% block content %}
-    <div id="projects">
+    <div id="projects" class="content">
         <div class="wrapper">
             {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <h4 class="bold">Projets</h4>

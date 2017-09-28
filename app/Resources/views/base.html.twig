@@ -94,9 +94,14 @@
                     </li>
                 </ul>
             </nav>
-            <img src="{% image 'images/circle_picture_kanako.png' %}{{ asset_url }}{% endimage %}" class="picture" alt="Logo">
-            <h2 class="bold">{% block titleName %}{{ content.name|raw }}{% endblock %}</h2>
-            <h3 class="regular">{% block titleDesc %}{{ content.job_title|raw }}, {{ content.city|raw }}{% endblock %}</h3>
+
+            <div class="clear"></div>
+
+            {% block headerTitle %}
+                <img src="{% image 'images/circle_picture_kanako.png' %}{{ asset_url }}{% endimage %}" class="picture" alt="Logo">
+                <h2 class="bold">{% block titleName %}{{ content.name|raw }}{% endblock %}</h2>
+                <h3 class="regular">{% block titleDesc %}{{ content.job_title|raw }}, {{ content.city|raw }}{% endblock %}</h3>
+            {% endblock %}
         </div>
     </header>
 

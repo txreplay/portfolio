@@ -1,3 +1,7 @@
-#homepage .custom-description li {
+#projects {
+
+}
+
+#projects .projects-list li.projects-item {
     margin: 8px 0;
 }

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\ContactType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,24 +14,40 @@ class FrontController extends Controller
 
     /**
      * @Route("/", name="homepage")
+     * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function indexAction()
     {
-        return $this->renderCache('front/index.html.twig', [
+        return $this->render('front/index.html.twig', [
             'content'  => $this->getContent(),
         ]);
     }
 
     /**
      * @Route("/projets", name="projects")
+     * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function projectsAction()
     {
         $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findAll();
 
-        return $this->renderCache('front/projects.html.twig', [
+        return $this->render('front/projects.html.twig', [
             'content'  => $this->getContent(),
             'projects' => $projects
+        ]);
+    }
+
+    /**
+     * @Route("/projet/{slug}", name="project_single")
+     * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
+     */
+    public function projectSingleAction($slug)
+    {
+        $project = $this->getDoctrine()->getRepository('AppBundle:Project')->findOneBy(['slug' => $slug]);
+
+        return $this->render('front/project_single.html.twig', [
+            'content'  => $this->getContent(),
+            'project' => $project
         ]);
     }
 
@@ -59,18 +76,6 @@ class FrontController extends Controller
             'success'  => $success,
             'form' => $form->createView()
         ]);
-    }
-
-    private function renderCache($template, $output)
-    {
-        $response = new Response();
-        $response->setPublic();
-        $response->setMaxAge(60);
-        $response->setSharedMaxAge(60);
-        $date = new \DateTime();
-        $date->modify('+ 60 seconds');
-        $response->setExpires($date);
-        return $this->render($template, $output, $response);
     }
 
     private function getContent()
