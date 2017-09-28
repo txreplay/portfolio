@@ -1,14 +1,12 @@
-{% block metaOg %}
-    <meta property="og:title" content="{% block metaOgTitle %}{{ content.name|raw_desc }}{% endblock %}" />
-    <meta property="og:description" content="{% block metaOgDescription %}{{ content.meta_description|raw_desc }}{% endblock %}" />
-    <meta property="og:url" content="{% block metaOgUrl %}{% if curr_route is not empty %}{{ url(curr_route, app.request.attributes.get('_route_params')) }}{% else %}{{ url('homepage') }}{% endif %}{% endblock %}" />
-    <meta property="og:type" content="{% block metaOgType %}website{% endblock %}" />
-    <meta property="og:image" content="{% block metaOgImage %}{% image 'images/facebook.jpg' %}{{ app.request.getSchemeAndHttpHost() ~ asset_url }}{% endimage %}{% endblock %}" />
-    <meta property="og:updated_time" content="{% block metaOgTime %}{{ 'today'|date('U') }}{% endblock %}" />
-    <meta property="og:site_name" content="{% block metaOgSiteName %}{{ content.name|raw_desc }}{% endblock %}" />
-    <meta property="og:locality" content="{% block metaOgLocality %}{{ content.city|raw_desc }}{% endblock %}" />
-    <meta property="og:postal-code" content="{% block metaOgPostalCode %}{{ content.postal_code|raw_desc }}{% endblock %}" />
-    <meta property="og:country-name" content="{% block metaOgCountryName %}{{ content.country|raw_desc }}{% endblock %}" />
-    <meta property="og:email" content="{% block metaOgEmail %}{{ content.email_perso|raw_desc }}{% endblock %}" />
-    <meta property="og:locale" content="{% block metaOgLocale %}fr_FR{% endblock %}">
-{% endblock %}
+<meta property="og:title" content="{% block metaOgTitle %}{{ getContent().name|raw_desc }}{% endblock %}" />
+<meta property="og:description" content="{% block metaOgDescription %}{{ getContent().meta_description|raw_desc }}{% endblock %}" />
+<meta property="og:url" content="{% block metaOgUrl %}{% if curr_route is not empty %}{{ url(curr_route, app.request.attributes.get('_route_params')) }}{% else %}{{ url('homepage') }}{% endif %}{% endblock %}" />
+<meta property="og:type" content="{% block metaOgType %}website{% endblock %}" />
+<meta property="og:image" content="{% block metaOgImage %}{% image 'images/facebook.jpg' %}{{ app.request.getSchemeAndHttpHost() ~ asset_url }}{% endimage %}{% endblock %}" />
+<meta property="og:updated_time" content="{% block metaOgTime %}{{ 'today'|date('U') }}{% endblock %}" />
+<meta property="og:site_name" content="{% block metaOgSiteName %}{{ getContent().name|raw_desc }}{% endblock %}" />
+<meta property="og:locality" content="{% block metaOgLocality %}{{ getContent().city|raw_desc }}{% endblock %}" />
+<meta property="og:postal-code" content="{% block metaOgPostalCode %}{{ getContent().postal_code|raw_desc }}{% endblock %}" />
+<meta property="og:country-name" content="{% block metaOgCountryName %}{{ getContent().country|raw_desc }}{% endblock %}" />
+<meta property="og:email" content="{% block metaOgEmail %}{{ getContent().email_perso|raw_desc }}{% endblock %}" />
+<meta property="og:locale" content="{% block metaOgLocale %}fr_FR{% endblock %}">

@@ -6,14 +6,14 @@
     <meta charset="{% block metaCharset %}utf-8{% endblock %}">
     <meta name="viewport" content="{% block metaViewport %}width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no{% endblock %}">
 
-    <title>{% block title %} | {{ content.name|raw_desc }} - {{ content.job_title|raw_desc }}{% endblock %}</title>
-    <meta name="description" content="{% block metaDescription %}{{ content.meta_description|raw_desc }}{% endblock %}" />
-    <meta name="keywords" content="{% block metaKeywords %}{{ content.keywords|raw_desc }}{% endblock %}">
-    <meta name="geo.placename" content="{% block metaGeoPlacename %}{{ content.city_complete|raw_desc }}{% endblock %}">
+    <title>{% block title %} | {{ getContent().name|raw_desc }} - {{ getContent().job_title|raw_desc }}{% endblock %}</title>
+    <meta name="description" content="{% block metaDescription %}{{ getContent().meta_description|raw_desc }}{% endblock %}" />
+    <meta name="keywords" content="{% block metaKeywords %}{{ getContent().keywords|raw_desc }}{% endblock %}">
+    <meta name="geo.placename" content="{% block metaGeoPlacename %}{{ getContent().city_complete|raw_desc }}{% endblock %}">
     <meta name="robots" content="{% block metaRobots %}index,follow{% endblock %}">
 
-    <meta name="author" content="{% block metaAuthor %}{{ content.name|raw_desc }}{% endblock %}" />
-    <meta name="copyright" content="{% block metaCopyright %}{{ content.name|raw_desc }}{% endblock %}" />
+    <meta name="author" content="{% block metaAuthor %}{{ getContent().name|raw_desc }}{% endblock %}" />
+    <meta name="copyright" content="{% block metaCopyright %}{{ getContent().name|raw_desc }}{% endblock %}" />
 
     {% block favicon %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -23,9 +23,13 @@
     <script src="{{ asset('bower_components/html5shiv/dist/html5shiv.js') }}"></script>
     <![endif]-->
 
-    {% include 'partials/meta/twitter.html.twig' %}
+    {% block twitterCard %}
+        {% include 'partials/meta/twitter.html.twig' %}
+    {% endblock %}
 
-    {% include 'partials/meta/facebook.html.twig' %}
+    {% block metaOg %}
+        {% include 'partials/meta/facebook.html.twig' %}
+    {% endblock %}
 
     {% block fonts %}
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,500,700" rel="stylesheet">
@@ -40,7 +44,9 @@
 
 <body>
 {% block body %}
-    {% include 'partials/header.html.twig' %}
+    {% block header %}
+        {% include 'partials/header.html.twig' %}
+    {% endblock %}
 
     {% block content %}{% endblock %}
 {% endblock %}

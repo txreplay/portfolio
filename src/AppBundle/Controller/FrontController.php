@@ -18,9 +18,7 @@ class FrontController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('front/index.html.twig', [
-            'content'  => $this->getContent(),
-        ]);
+        return $this->render('front/index.html.twig');
     }
 
     /**
@@ -32,7 +30,6 @@ class FrontController extends Controller
         $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findAll();
 
         return $this->render('front/projects.html.twig', [
-            'content'  => $this->getContent(),
             'projects' => $projects
         ]);
     }
@@ -46,7 +43,6 @@ class FrontController extends Controller
         $project = $this->getDoctrine()->getRepository('AppBundle:Project')->findOneBy(['slug' => $slug]);
 
         return $this->render('front/project_single.html.twig', [
-            'content'  => $this->getContent(),
             'project' => $project
         ]);
     }
@@ -72,20 +68,9 @@ class FrontController extends Controller
         }
 
         return $this->render('front/contact.html.twig', [
-            'content'  => $this->getContent(),
             'success'  => $success,
             'form' => $form->createView()
         ]);
-    }
-
-    private function getContent()
-    {
-        $contents_obj = $this->getDoctrine()->getRepository('AppBundle:Content')->findAll();
-        $content = [];
-        foreach($contents_obj as $contents){
-            $content[$contents->getKey()] = $contents->getValue();
-        }
-        return $content;
     }
 
     private function sendEmail($data){
