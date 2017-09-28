@@ -1,0 +1,113 @@
+{% block sonata_formatter_type_widget %}
+
+    <!-- widget: sonata_formatter_type_widget -->
+    <div style="margin-bottom: 5px;">
+        {{ form_widget(form.children[format_field]) }}
+        {% if format_field_options.choices|length > 1 %}
+            <i>{{ "please_select_format_method"|trans({}, "SonataFormatterBundle") }}</i>
+        {% endif %}
+    </div>
+
+    {{ form_widget(form.children[source_field]) }}
+
+    <script>
+        var {{ source_id }}_rich_instance = false;
+
+        jQuery(document).ready(function() {
+
+            // This code requires CKEDITOR and jQuery MarkItUp
+            if (typeof CKEDITOR === 'undefined' || jQuery().markItUp == undefined) {
+                return;
+            }
+
+            var isInstanceActive = isInstanceActive || function(instance){
+                return instance && instance.status !== "destroyed";
+            };
+
+            jQuery('#{{ form.children[format_field].vars.id }}').parents("form").on('click', function(event) {
+                if (isInstanceActive({{ source_id }}_rich_instance)) {
+                    {{ source_id }}_rich_instance.updateElement();
+                }
+            });
+
+            jQuery('#{{ form.children[format_field].vars.id }}').change(function(event) {
+                var elms = jQuery('#{{ form.children[source_field].vars.id }}');
+                elms.markItUpRemove();
+                if (isInstanceActive({{ source_id }}_rich_instance)) {
+                    {{ source_id }}_rich_instance.destroy();
+                }
+
+                var val = jQuery(this).val();
+                var appendClass = val;
+                switch(val) {
+                    case 'textile':
+                        elms.markItUp(markitup_sonataTextileSettings);
+                        break;
+                    case 'markdown':
+                        elms.markItUp(markitup_sonataMarkdownSettings);
+                        break;
+                    case 'bbcode':
+                        elms.markItUp(markitup_sonataBBCodeSettings);
+                        break;
+                    case 'rawhtml':
+                        elms.markItUp(markitup_sonataHtmlSettings);
+                        appendClass = 'html';
+                        break;
+                    case 'richhtml':
+                        {{ source_id }}_rich_instance = {{
+                            ckeditor_widget(form.children[source_field].vars.id, ckeditor_configuration)
+                        }};
+                }
+
+                var parent = elms.parents('div.markItUp');
+
+                if (parent) {
+                    for (name in ['textile', 'markdown', 'bbcode', 'rawhtml', 'richhtml', 'rawhtml']) {
+                        parent.removeClass(name)
+                    }
+
+                    parent.addClass(appendClass);
+                }
+            });
+
+            jQuery('#{{ form.children[format_field].vars.id }}').trigger('change');
+        });
+    </script>
+{% endblock sonata_formatter_type_widget %}
+
+{% block sonata_simple_formatter_type_widget %}
+
+    <!-- widget: sonata_simple_formatter_type_widget -->
+
+    {{ form_widget(form) }}
+
+    <script>
+        jQuery(document).ready(function() {
+            // This code requires CKEDITOR and jQuery MarkItUp
+            if (typeof CKEDITOR === 'undefined' || jQuery().markItUp == undefined) {
+                return;
+            }
+
+            var elms = jQuery('#{{ form.vars.id }}');
+
+            {% if format == 'textile' %}
+                elms.markItUp(markitup_sonataTextileSettings);
+            {% elseif format == 'markdown' %}
+                elms.markItUp(markitup_sonataMarkdownSettings);
+            {% elseif format == 'bbcode' %}
+                elms.markItUp(markitup_sonataBBCodeSettings);
+            {% elseif format == 'rawhtml' %}
+                elms.markItUp(markitup_sonataHtmlSettings);
+            {% elseif format == 'richhtml' %}
+                {{ ckeditor_widget(form.vars.id, ckeditor_configuration) }};
+            {% endif %}
+
+            var parent = elms.parents('div.markItUp');
+
+            if (parent) {
+                parent.addClass('{{ format }}');
+            }
+
+        });
+    </script>
+{% endblock sonata_simple_formatter_type_widget %}

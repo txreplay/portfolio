@@ -1,0 +1,7 @@
+build
+phpunit.xml
+Resources/doc/_build/*
+coverage
+composer.lock
+vendor
+.php_cs.cache
