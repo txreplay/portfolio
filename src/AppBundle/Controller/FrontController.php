@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,17 +15,17 @@ class FrontController extends Controller
 
     /**
      * @Route("/", name="homepage")
+     * @Method({"GET"})
      * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function indexAction()
     {
-        return $this->render('front/index.html.twig', [
-            'content'  => $this->getContent(),
-        ]);
+        return $this->render('front/index.html.twig');
     }
 
     /**
      * @Route("/projets", name="projects")
+     * @Method({"GET"})
      * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function projectsAction()
@@ -32,13 +33,13 @@ class FrontController extends Controller
         $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findAll();
 
         return $this->render('front/projects.html.twig', [
-            'content'  => $this->getContent(),
             'projects' => $projects
         ]);
     }
 
     /**
      * @Route("/projet/{slug}", name="project_single")
+     * @Method({"GET"})
      * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function projectSingleAction($slug)
@@ -46,13 +47,13 @@ class FrontController extends Controller
         $project = $this->getDoctrine()->getRepository('AppBundle:Project')->findOneBy(['slug' => $slug]);
 
         return $this->render('front/project_single.html.twig', [
-            'content'  => $this->getContent(),
             'project' => $project
         ]);
     }
 
     /**
      * @Route("/contact", name="contact")
+     * @Method({"GET", "POST"})
      */
     public function contactAction(Request $request)
     {
@@ -65,27 +66,21 @@ class FrontController extends Controller
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
-            if($form->isValid()){
+            if($form->isSubmitted() && $form->isValid()){
                 $this->sendEmail($form->getData());
                 $success = true;
+                
+                return $this->redirectToRoute('contact', [
+                    'succes' => $success,
+                    'form' => $form->createView()
+                ], 307);
             }
         }
 
         return $this->render('front/contact.html.twig', [
-            'content'  => $this->getContent(),
             'success'  => $success,
             'form' => $form->createView()
         ]);
-    }
-
-    private function getContent()
-    {
-        $contents_obj = $this->getDoctrine()->getRepository('AppBundle:Content')->findAll();
-        $content = [];
-        foreach($contents_obj as $contents){
-            $content[$contents->getKey()] = $contents->getValue();
-        }
-        return $content;
     }
 
     private function sendEmail($data){

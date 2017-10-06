@@ -1,0 +1,26 @@
+<header>
+    <div class="wrapper">
+        <h1 id="logo">txreplay.</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ path('homepage') }}" {% if curr_route == 'homepage' %}class="active regular"{% endif %} data-tracking="menu-about">À propos</a>
+                </li>
+                <li>
+                    <a href="{{ path('projects') }}" {% if curr_route == 'projects' %}class="active regular"{% endif %} data-tracking="menu-projects">Projets</a>
+                </li>
+                <li>
+                    <a href="{{ path('contact') }}" {% if curr_route == 'contact' %}class="active regular"{% endif %} data-tracking="menu-contact">Contact</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="clear"></div>
+
+        {% block headerTitle %}
+            <img src="{% image 'images/circle_picture_kanako.png' %}{{ asset_url }}{% endimage %}" class="picture" alt="Logo">
+            <h2 class="bold">{% block titleName %}{{ getContent().name|raw_desc }}{% endblock %}</h2>
+            <h3 class="regular">{% block titleDesc %}{{ getContent().job_title|raw_desc }}, {{ getContent().city|raw_desc }}{% endblock %}</h3>
+        {% endblock %}
+    </div>
+</header>

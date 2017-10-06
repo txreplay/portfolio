@@ -13,11 +13,11 @@ parameters:
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
     mailer_port:       587
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_user:       XXX
+    mailer_password:   XXX
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            59cd69ec2f80b
 
     mail_from: from@yourcompany.fr
     mail_to : to@yourcompany.fr
