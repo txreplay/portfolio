@@ -66,7 +66,7 @@ class FrontController extends Controller
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
-            if($form->isValid()){
+            if($form->isSubmitted() && $form->isValid()){
                 $this->sendEmail($form->getData());
                 $success = true;
             }
