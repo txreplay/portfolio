@@ -35,7 +35,7 @@ class Content
      */
     private $value;
 
-    function __toString()
+    public function __toString()
     {
         return ($this->key)? $this->key : 'New Content';
     }

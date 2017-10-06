@@ -4,15 +4,14 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets
-    'css/contact.css'
-    filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+
+    {% stylesheets 'css/contact.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 
 {% block content %}
-    <div id="contact">
+    <div id="contact" class="content">
         <div class="wrapper">
             <h4 class="bold">Contact</h4>
 

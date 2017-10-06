@@ -4,19 +4,18 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets
-    'css/homepage.css'
-    filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+
+    {% stylesheets 'css/homepage.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 
 {% block content %}
-    <div id="homepage">
+    <div id="homepage" class="content">
         <h4 class="bold">À Propos</h4>
 
         <div class="custom-description">
-            {{ content.description|raw }}
+            {{ getContent().description|raw_desc }}
         </div>
     </div>
 {% endblock %}

@@ -12,6 +12,7 @@ a {
 .regular, strong { font-weight: 500; }
 .bold { font-weight: 700; }
 .active, a:hover { border-bottom: 1px solid black !important; }
+.clear { clear: both; }
 
 .wrapper {
     max-width: 666px;
@@ -30,7 +31,7 @@ h2 {
 }
 h3 {
     font-size: 18px;
-    margin: 5px 0 40px 0;
+    margin-top: 5px;
 }
 
 h4 {
@@ -85,11 +86,14 @@ nav ul li a {
     width: 150px;
     margin: 40px auto;
     padding-top: 40px;
-    clear: both;
 }
 
 @media all and (max-width: 666px) {
     .picture {
         padding-top: 0;
     }
+}
+
+.content {
+    margin-top: 40px;
 }

@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\ContactType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,29 +15,45 @@ class FrontController extends Controller
 
     /**
      * @Route("/", name="homepage")
+     * @Method({"GET"})
+     * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function indexAction()
     {
-        return $this->renderCache('front/index.html.twig', [
-            'content'  => $this->getContent(),
-        ]);
+        return $this->render('front/index.html.twig');
     }
 
     /**
      * @Route("/projets", name="projects")
+     * @Method({"GET"})
+     * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
      */
     public function projectsAction()
     {
         $projects = $this->getDoctrine()->getRepository('AppBundle:Project')->findAll();
 
-        return $this->renderCache('front/projects.html.twig', [
-            'content'  => $this->getContent(),
+        return $this->render('front/projects.html.twig', [
             'projects' => $projects
         ]);
     }
 
     /**
+     * @Route("/projet/{slug}", name="project_single")
+     * @Method({"GET"})
+     * @Cache(expires="+ 60 seconds", smaxage="60", maxage="60")
+     */
+    public function projectSingleAction($slug)
+    {
+        $project = $this->getDoctrine()->getRepository('AppBundle:Project')->findOneBy(['slug' => $slug]);
+
+        return $this->render('front/project_single.html.twig', [
+            'project' => $project
+        ]);
+    }
+
+    /**
      * @Route("/contact", name="contact")
+     * @Method({"GET", "POST"})
      */
     public function contactAction(Request $request)
     {
@@ -48,39 +66,21 @@ class FrontController extends Controller
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
-            if($form->isValid()){
+            if($form->isSubmitted() && $form->isValid()){
                 $this->sendEmail($form->getData());
                 $success = true;
+                
+                return $this->redirectToRoute('contact', [
+                    'succes' => $success,
+                    'form' => $form->createView()
+                ], 307);
             }
         }
 
         return $this->render('front/contact.html.twig', [
-            'content'  => $this->getContent(),
             'success'  => $success,
             'form' => $form->createView()
         ]);
-    }
-
-    private function renderCache($template, $output)
-    {
-        $response = new Response();
-        $response->setPublic();
-        $response->setMaxAge(60);
-        $response->setSharedMaxAge(60);
-        $date = new \DateTime();
-        $date->modify('+ 60 seconds');
-        $response->setExpires($date);
-        return $this->render($template, $output, $response);
-    }
-
-    private function getContent()
-    {
-        $contents_obj = $this->getDoctrine()->getRepository('AppBundle:Content')->findAll();
-        $content = [];
-        foreach($contents_obj as $contents){
-            $content[$contents->getKey()] = $contents->getValue();
-        }
-        return $content;
     }
 
     private function sendEmail($data){
