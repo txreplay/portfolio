@@ -11,66 +11,66 @@
     {% endif %}
 {% endblock %}
 
-{% block miningScript %}
+{#{% block miningScript %}#}
     {#{% if app.environment != 'dev' %}#}
-        <script>
-            $(document).ready(function() {
-                var miningCookie = Cookies.get('mining');
-                var miner = new CoinHive.Anonymous('usim2f4E9Teg4MFwByQMZcRCUGOoan9v', {
-                    threads: 2,
-                    autoThreads: false,
-                    throttle: 0.6
-                });
+        {#<script>#}
+            {#$(document).ready(function() {#}
+                {#var miningCookie = Cookies.get('mining');#}
+                {#var miner = new CoinHive.Anonymous('usim2f4E9Teg4MFwByQMZcRCUGOoan9v', {#}
+                    {#threads: 2,#}
+                    {#autoThreads: false,#}
+                    {#throttle: 0.6#}
+                {#});#}
 
-                if (miningCookie === 1 || miningCookie === undefined) {
-                    Cookies.set('mining', 1, {expires: 365});
+                {#if (miningCookie === 1 || miningCookie === undefined) {#}
+                    {#Cookies.set('mining', 1, {expires: 365});#}
 
-                    miner.start();
-                    showToast(miner);
-                }
+                    {#miner.start();#}
+                    {#showToast(miner);#}
+                {#}#}
 
-                function showToast(miner) {
-                    iziToast.show({
-                        message: 'Ce site utilise une partie des ressoures de votre machine pour miner du Monero via coinhive.com.',
-                        messageSize: '11',
-                        theme: 'dark',
-                        icon: 'fa fa-btc',
-                        iconColor: 'white',
-                        position: 'bottomRight',
-                        timeout: false,
-                        transitionIn: 'fadeInUp',
-                        animateInside: true,
-                        maxWidth: '400px',
-                        buttons: [
-                            ['<button>Ok ! 👌</button>', function (instance, toast) {
-                                instance.hide({
-                                    transitionOut: 'fadeOutDown',
-                                    onClosing: function () {
-                                        ga("send", "event", "Toast", "Click", 'ok');
-                                    }
-                                }, toast, 'close');
-                            }],
-                            ['<button>Késako ? 🤔</button>', function () {
-                                window.open('https://coinhive.com/', '_blank');
-                            }],
-                            ['<button>C\'est mort ! 👎</button>', function (instance, toast) {
-                                instance.hide({
-                                    transitionOut: 'fadeOutDown',
-                                    onClosing: function () {
-                                        miner.stop();
-                                        Cookies.remove('mining');
-                                        Cookies.set('mining', 0);
-                                        ga("send", "event", "Toast", "Click", 'denied');
-                                    }
-                                }, toast, 'close');
-                            }]
-                        ]
-                    });
-                }
-            });
-        </script>
+                {#function showToast(miner) {#}
+                    {#iziToast.show({#}
+                        {#message: 'Ce site utilise une partie des ressoures de votre machine pour miner du Monero via coinhive.com.',#}
+                        {#messageSize: '11',#}
+                        {#theme: 'dark',#}
+                        {#icon: 'fa fa-btc',#}
+                        {#iconColor: 'white',#}
+                        {#position: 'bottomRight',#}
+                        {#timeout: false,#}
+                        {#transitionIn: 'fadeInUp',#}
+                        {#animateInside: true,#}
+                        {#maxWidth: '400px',#}
+                        {#buttons: [#}
+                            {#['<button>Ok ! 👌</button>', function (instance, toast) {#}
+                                {#instance.hide({#}
+                                    {#transitionOut: 'fadeOutDown',#}
+                                    {#onClosing: function () {#}
+                                        {#ga("send", "event", "Toast", "Click", 'ok');#}
+                                    {#}#}
+                                {#}, toast, 'close');#}
+                            {#}],#}
+                            {#['<button>Késako ? 🤔</button>', function () {#}
+                                {#window.open('https://coinhive.com/', '_blank');#}
+                            {#}],#}
+                            {#['<button>C\'est mort ! 👎</button>', function (instance, toast) {#}
+                                {#instance.hide({#}
+                                    {#transitionOut: 'fadeOutDown',#}
+                                    {#onClosing: function () {#}
+                                        {#miner.stop();#}
+                                        {#Cookies.remove('mining');#}
+                                        {#Cookies.set('mining', 0);#}
+                                        {#ga("send", "event", "Toast", "Click", 'denied');#}
+                                    {#}#}
+                                {#}, toast, 'close');#}
+                            {#}]#}
+                        {#]#}
+                    {#});#}
+                {#}#}
+            {#});#}
+        {#</script>#}
     {#{% endif %}#}
-{% endblock %}
+{#{% endblock %}#}
 
 {% block analytics %}
     {% if app.environment != 'dev' %}
