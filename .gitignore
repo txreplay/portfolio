@@ -42,8 +42,14 @@
 # Bower
 /web/bower_components/
 
+# SonarQube
+.scannerwork/
+sonar-project.properties
+
 # Shitty files
 */.DS_Store
 ._*
 .Spotlight-V100
 .Trashes
+.idea/
+/.idea/
