@@ -69,11 +69,6 @@ class FrontController extends Controller
             if($form->isSubmitted() && $form->isValid()){
                 $this->sendEmail($form->getData());
                 $success = true;
-                
-                return $this->redirectToRoute('contact', [
-                    'succes' => $success,
-                    'form' => $form->createView()
-                ], 307);
             }
         }
 
